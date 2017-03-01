@@ -88,8 +88,40 @@
         android:background="@drawable/button_login_style"
         android:text="登录"
         android:textColor="#fff"
-        android:textSize="22sp" />
+        android:textSize="20sp" />
 
+    <RelativeLayout
+        android:id="@+id/button_qqlogin"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_qq_style">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/img_qq"
+                android:src="@mipmap/qq" />
+            <TextView
+                android:layout_centerVertical="true"
+                android:id="@+id/text_qq"
+                android:layout_toRightOf="@+id/img_qq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="QQ登录"
+                android:textColor="#fff"
+                android:textSize="20sp" />
+        </RelativeLayout>
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/tv_login_forget"
@@ -108,37 +140,5 @@
         android:gravity="center"
         android:text="注册"
         android:textSize="16sp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="bottom"
-        android:paddingTop="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:orientation="horizontal"
-        android:weightSum="3">
-
-        <ImageView
-            android:id="@+id/img_qq"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@mipmap/img_share_qq" />
-
-        <ImageView
-            android:id="@+id/img_weixin"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@mipmap/img_share_wechat" />
-
-        <ImageView
-            android:id="@+id/img_sina"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@mipmap/img_share_sina" />
-    </LinearLayout>
 
 </LinearLayout>

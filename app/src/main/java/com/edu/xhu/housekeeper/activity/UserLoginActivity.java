@@ -2,12 +2,14 @@ package com.edu.xhu.housekeeper.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,11 +17,12 @@ import com.edu.xhu.housekeeper.R;
 import com.edu.xhu.housekeeper.entity.User;
 import com.edu.xhu.housekeeper.utils.Utils;
 import com.tencent.connect.UserInfo;
-import com.tencent.connect.common.Constants;
+import com.tencent.connect.auth.QQAuth;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -54,13 +57,16 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
      */
     private TextView mTvRegister;
 
-    private ImageView mImgQQ;
-    private ImageView mImgWX;
-    private ImageView mImgWB;
+    private RelativeLayout mImgQQ;
+//    private ImageView mImgWX;
+//    private ImageView mImgWB;
 
     private Context mContext;
+    public static QQAuth mQQAuth;
+    private UserInfo mInfo;
     private Tencent mTencent;
-    private BaseUiListener baseUiListener;
+
+    //  private BaseUiListener baseUiListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,25 +75,32 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         init();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mQQAuth = QQAuth.createInstance("1105929217", mContext);
+        mTencent = Tencent.createInstance("1105929217", mContext);
+    }
+
     private void init() {
         mContext = this;
-        mTencent = Tencent.createInstance("1105929217", mContext);
-        baseUiListener = new BaseUiListener();
+        //   mTencent = Tencent.createInstance("1105929217", mContext);
+        //    baseUiListener = new BaseUiListener();
         mIvBack = (ImageView) findViewById(R.id.image_rg_back);
         mEdtPhone = (EditText) findViewById(R.id.edit_name);
         mEdtPassword = (EditText) findViewById(R.id.edit_psw);
         mBtnLogin = (Button) findViewById(R.id.button_login);
         mTvRegister = (TextView) findViewById(R.id.tv_register);
-        mImgQQ = (ImageView) findViewById(R.id.img_qq);
-        mImgWX = (ImageView) findViewById(R.id.img_weixin);
-        mImgWB = (ImageView) findViewById(R.id.img_sina);
+        mImgQQ = (RelativeLayout) findViewById(R.id.button_qqlogin);
+//        mImgWX = (ImageView) findViewById(R.id.img_weixin);
+//        mImgWB = (ImageView) findViewById(R.id.img_sina);
 
         mIvBack.setOnClickListener(this);
         mBtnLogin.setOnClickListener(this);
         mTvRegister.setOnClickListener(this);
         mImgQQ.setOnClickListener(this);
-        mImgWX.setOnClickListener(this);
-        mImgWB.setOnClickListener(this);
+//        mImgWX.setOnClickListener(this);
+//        mImgWB.setOnClickListener(this);
     }
 
     @Override
@@ -182,19 +195,18 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
 //                });
                 break;
             //qq登录按钮
-            case R.id.img_qq:
-                Toast.makeText(mContext,"QQ登录",Toast.LENGTH_LONG).show();
-                login_qq();
-               // startActivity(new Intent(this, RegisterActivity.class));
+            case R.id.button_qqlogin:
+                Toast.makeText(mContext, "QQ登录", Toast.LENGTH_LONG).show();
+                onClickLogin();
                 break;
-            //注册按钮
-            case R.id.img_weixin:
-                startActivity(new Intent(this, RegisterActivity.class));
-                break;
-            //注册按钮
-            case R.id.img_sina:
-                startActivity(new Intent(this, RegisterActivity.class));
-                break;
+//            //微信登录
+//            case R.id.img_weixin:
+//                startActivity(new Intent(this, RegisterActivity.class));
+//                break;
+//            //微博登录
+//            case R.id.img_sina:
+//                startActivity(new Intent(this, RegisterActivity.class));
+//                break;
             //注册按钮
             case R.id.tv_register:
                 startActivity(new Intent(this, RegisterActivity.class));
@@ -202,70 +214,93 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
         }
     }
 
-//    private void doLogin() {
-//        IUiListener listener = new BaseUiListener() {
-//            @Override
-//            protected void doComplete(JSONObject values) {
-//                //  updateLoinButton();
-//                Log.d("zyq",values.toString());
-//                super.doComplete(values);
-//            }
-//        };
-//        mTencent.login(this, "all", listener);
-//    }
+    public void logout() {
+        mTencent.logout(this);
+    }
+
+
+    private void onClickLogin() {
+        if (!mQQAuth.isSessionValid()) {
+            IUiListener listener = new BaseUiListener() {
+                @Override
+                public void onComplete(Object o) {
+                    super.onComplete(o);
+                }
+
+                @Override
+                protected void doComplete(JSONObject values) {
+                    Log.d("zyq", "=====>" + "hahaha" + values.toString());
+                    updateUserInfo();
+                }
+            };
+            mQQAuth.login(this, "all", listener);
+            mTencent.login(this, "all", listener);
+        }
+    }
 
     private class BaseUiListener implements IUiListener {
-        //        @Override
-//        public void onComplete(JSONObject response) {
-////            mBaseMessageText.setText("onComplete:");
-////            mMessageText.setText(response.toString());
-//            doComplete(response);
-//        }
-//        protected void doComplete(JSONObject values) {
-//            Log.d("zyq","values----->"+values.toString());
-//        }
 
         @Override
-        public void onComplete(Object o) {
-            o.toString();
-            Toast.makeText(mContext,o.toString(),Toast.LENGTH_LONG).show();
-            Log.d("zyq","oo----->"+o.toString());
+        public void onComplete(Object response) {
+            Toast.makeText(mContext, "登录成功！", Toast.LENGTH_LONG).show();
+            doComplete((JSONObject) response);
+        }
+
+        protected void doComplete(JSONObject values) {
+            Log.d("zyq", "000------>" + values.toString());//可以获取到openid
         }
 
         @Override
         public void onError(UiError e) {
-//            showResult("onError:", "code:" + e.errorCode + ", msg:"
-//                    + e.errorMessage + ", detail:" + e.errorDetail);
+            Toast.makeText(mContext, "登录失败！", Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void onCancel() {
-//            showResult("onCancel", "");
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == Constants.REQUEST_API) {
-            //  if(resultCode == Constants.RESULT_LOGIN) {
-            mTencent.handleLoginData(data, baseUiListener);
-//            UserInfo info = new UserInfo(this, MainActivity.mQQAuth.getQQToken());
-//            info.getUserInfo(new BaseUIListener(this,"get_simple_userinfo"));
-            //   }
-            Tencent.onActivityResultData(requestCode, resultCode, data, baseUiListener);
+            Toast.makeText(mContext, "取消登录！", Toast.LENGTH_LONG).show();
         }
     }
 
 
-    public void login_qq() {
-        //  mTencent = Tencent.createInstance(AppId, this.getApplicationContext());
-        if (!mTencent.isSessionValid()) {
-            mTencent.login(this, "all", baseUiListener);
-        }
-    }
+    private void updateUserInfo() {
+        if (mQQAuth != null && mQQAuth.isSessionValid()) {
+            IUiListener listener = new IUiListener() {
 
-    public void logout() {
-        mTencent.logout(this);
+                @Override
+                public void onError(UiError e) {
+                    // TODO Auto-generated method stub
+                }
+
+                @Override
+                public void onCancel() {
+                }
+
+                @Override
+                public void onComplete(final Object response) {
+                    JSONObject json = (JSONObject) response;
+                    if (json.has("figureurl")) {
+                        Bitmap bitmap = null;
+                        try {
+                            Log.d("zyq", json.getString("figureurl_qq_2"));
+//                                    bitmap = Util.getbitmap(json
+//                                            .getString("figureurl_qq_2"));
+                        } catch (JSONException e) {
+
+                        }
+                    }
+                    if (json.has("nickname")) {
+                        try {
+                            Log.d("zyq", json.toString());
+                            Log.d("zyq", json.getString("nickname"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            };
+            mInfo = new UserInfo(this, mQQAuth.getQQToken());
+            mInfo.getUserInfo(listener);
+        }
     }
 }
 

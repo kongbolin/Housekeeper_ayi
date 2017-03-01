@@ -20,6 +20,20 @@
         android:name="cn.bmob.permission.push"
         android:protectionLevel="normal"></permission>
 
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- SDK2.1新增获取用户位置信息 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+
     <uses-permission android:name="cn.bmob.permission.push" /> <!-- 添加自定义的权限 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -81,6 +95,7 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="Giwnsl1drbXdEfxLVNgZmr9ZGFhNs0lY" />
+
         <activity android:name="com.edu.xhu.housekeeper.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -91,26 +106,30 @@
 
         <activity
             android:name="com.tencent.tauth.AuthActivity"
-            android:noHistory="true"
-            android:launchMode="singleTask" >
+            android:launchMode="singleTask"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="1105929217" /> <!--QQ APPID-->
 
             </intent-filter>
         </activity>
 
-        <activity android:name="com.tencent.connect.common.AssistActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            />
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <!--<activity android:name=".activity.MapDemoActivity"></activity>-->
         <activity android:name=".activity.MainActivity"></activity>
         <activity android:name=".activity.GuideActivity"></activity>
         <activity android:name=".activity.UserLoginActivity"></activity>
         <activity android:name=".activity.RegisterActivity"></activity>
+
+
         <service
             android:name="cn.bmob.push.lib.service.PushService"
             android:exported="true"
