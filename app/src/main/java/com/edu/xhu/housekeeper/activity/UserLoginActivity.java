@@ -58,16 +58,11 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
     private TextView mTvRegister;
 
     private RelativeLayout mImgQQ;
-//    private ImageView mImgWX;
-//    private ImageView mImgWB;
 
     private Context mContext;
     public static QQAuth mQQAuth;
     private UserInfo mInfo;
     private Tencent mTencent;
-
-    //  private BaseUiListener baseUiListener;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,23 +79,17 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
 
     private void init() {
         mContext = this;
-        //   mTencent = Tencent.createInstance("1105929217", mContext);
-        //    baseUiListener = new BaseUiListener();
         mIvBack = (ImageView) findViewById(R.id.image_rg_back);
         mEdtPhone = (EditText) findViewById(R.id.edit_name);
         mEdtPassword = (EditText) findViewById(R.id.edit_psw);
         mBtnLogin = (Button) findViewById(R.id.button_login);
         mTvRegister = (TextView) findViewById(R.id.tv_register);
         mImgQQ = (RelativeLayout) findViewById(R.id.button_qqlogin);
-//        mImgWX = (ImageView) findViewById(R.id.img_weixin);
-//        mImgWB = (ImageView) findViewById(R.id.img_sina);
 
         mIvBack.setOnClickListener(this);
         mBtnLogin.setOnClickListener(this);
         mTvRegister.setOnClickListener(this);
         mImgQQ.setOnClickListener(this);
-//        mImgWX.setOnClickListener(this);
-//        mImgWB.setOnClickListener(this);
     }
 
     @Override
