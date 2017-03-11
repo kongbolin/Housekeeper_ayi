@@ -3,7 +3,7 @@ package com.edu.xhu.housekeeper.activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.WindowManager;
-//update by zyq
+//update by zyq_03_11
 /**
  * Created by skysoft on 2017/2/21.
  */
