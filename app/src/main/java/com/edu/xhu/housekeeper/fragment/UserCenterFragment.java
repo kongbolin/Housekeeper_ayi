@@ -1,18 +1,24 @@
 package com.edu.xhu.housekeeper.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.edu.xhu.housekeeper.HousekeeperApp;
 import com.edu.xhu.housekeeper.R;
+import com.edu.xhu.housekeeper.activity.AddrListActivity;
+import com.edu.xhu.housekeeper.activity.SettingActivity;
+import com.edu.xhu.housekeeper.activity.UserInfoActivity;
 import com.edu.xhu.housekeeper.activity.UserLoginActivity;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -104,18 +110,52 @@ public class UserCenterFragment extends Fragment implements View.OnClickListener
                 break;
             case R.id.fg_me_addr_rl:
                 //进去我的地址列表，默认地址设置
+                startActivity(new Intent(getActivity(),AddrListActivity.class));
                 break;
             case R.id.fg_me_set_rl:
                 //进去设置，默认地址设置
+                startActivity(new Intent(getActivity(),SettingActivity.class));
                 break;
             case R.id.fg_me_wanshan_rl:
+                startActivity(new Intent(getActivity(),UserInfoActivity.class));
                 //进去我的个人信息详情，默认地址设置
                 break;
             case R.id.fg_me_psw_rl:
                 //进去修改密码，默认地址设置
                 break;
             case R.id.fg_me_exit_rl:
+                Toast.makeText(getActivity(),"tuic",Toast.LENGTH_LONG).show();
                 //弹出退出登录对话框
+                new AlertDialog.Builder(getActivity()).setTitle("退出登录")//设置对话框标题
+                        .setMessage("请确认是否要退出登录？")
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {//添加确定按钮
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //确定按钮的响应事件
+                   //         }
+                                //this.finish();
+//                                try {
+//                                    DBHelper.getInstance(getActivity()).deleteAll(userInfo.class);
+//                                    logined = 0;
+//                                    SharedPreferences spso = getActivity().getSharedPreferences("news", getActivity().MODE_PRIVATE);
+//                                    SharedPreferences.Editor edqo = spso.edit();
+//                                    edqo.putString("qq", "未绑定");
+//                                    edqo.commit();
+//                                } catch (DbException e) {
+//                                    e.printStackTrace();
+//                                }
+//                                user_icon.setImageResource(R.mipmap.user_center_head_icon);
+//                                tv_name.setText(getContext().getResources().getString(R.string.userpage_login));
+//                                userinfos.clear();
+                           }
+                        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {//添加返回按钮
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {//响应事件
+                     //   logined = 1;
+                        // TODO Auto-generated method stub
+                        Log.i("alertdialog", " 请保存数据！");
+                    }
+                }).show();//在按键响应事件中显示此对话框
                 break;
 
         }

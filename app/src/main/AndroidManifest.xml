@@ -129,6 +129,9 @@
         <activity android:name=".activity.UserLoginActivity"></activity>
         <activity android:name=".activity.RegisterActivity"></activity>
         <activity android:name=".activity.UpdatePswActivity"></activity>
+        <activity android:name=".activity.UserInfoActivity"></activity>
+        <activity android:name=".activity.AddrListActivity"></activity>
+        <activity android:name=".activity.SettingActivity"></activity>
 
 
         <service
