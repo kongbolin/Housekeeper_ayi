@@ -1,41 +1,73 @@
 package com.edu.xhu.housekeeper.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.edu.xhu.housekeeper.HousekeeperApp;
 import com.edu.xhu.housekeeper.R;
+import com.edu.xhu.housekeeper.activity.UserLoginActivity;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by heyzqt on 2016/9/6.
- * <p>
+ * <p/>
  * 用户中心Fragment
  */
-public class UserCenterFragment extends Fragment {
+public class UserCenterFragment extends Fragment implements View.OnClickListener {
+
+    private CircleImageView circleImageView;
+    private TextView mUsernameTv;
+    private TextView mTvOrder;
+    private TextView mTvComment;
+    private ImageView mImgOrder;
+    private ImageView mImgComment;
+    private RelativeLayout mRlWans;
+    private RelativeLayout mRlAddr;
+    private RelativeLayout mRlPsw;
+    private RelativeLayout mRlSet;
+    private RelativeLayout mRlExit;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View contentView = inflater.inflate(R.layout.fragment_usercenter, null);
-        //   initView(contentView);
+        initView(contentView);
         return contentView;
     }
 
-//    private void initView(View convertView) {
-//        mUserHeadView = (RoundImageView) convertView.findViewById(R.id.img_user_head);
-//        mUsernameTv = (TextView) convertView.findViewById(R.id.tv_user_head);
-//        mAddressRy = (RelativeLayout) convertView.findViewById(R.id.ry_address);
-//        mOrderRy = (RelativeLayout) convertView.findViewById(R.id.ry_order);
-//        mCollectRy = (RelativeLayout) convertView.findViewById(R.id.ry_collect);
-//        mUserInfoRy = (RelativeLayout) convertView.findViewById(R.id.ry_userinfo);
-//        mUserHeadView.setOnClickListener(this);
-//        mAddressRy.setOnClickListener(this);
-//        mOrderRy.setOnClickListener(this);
-//        mCollectRy.setOnClickListener(this);
-//        mUserInfoRy.setOnClickListener(this);
-//    }
+    private void initView(View convertView) {
+        circleImageView = (CircleImageView) convertView.findViewById(R.id.Usericon);
+        mUsernameTv = (TextView) convertView.findViewById(R.id.usercenter_name);
+        mTvComment = (TextView) convertView.findViewById(R.id.tvComment);
+        mTvOrder = (TextView) convertView.findViewById(R.id.tvOrder);
+        mImgComment= (ImageView) convertView.findViewById(R.id.imgComment);
+        mImgOrder= (ImageView) convertView.findViewById(R.id.imgOrder);
+        mRlWans = (RelativeLayout) convertView.findViewById(R.id.fg_me_wanshan_rl);
+        mRlAddr = (RelativeLayout) convertView.findViewById(R.id.fg_me_addr_rl);
+        mRlPsw = (RelativeLayout) convertView.findViewById(R.id.fg_me_psw_rl);
+        mRlSet = (RelativeLayout) convertView.findViewById(R.id.fg_me_set_rl);
+        mRlExit = (RelativeLayout) convertView.findViewById(R.id.fg_me_exit_rl);
+
+        circleImageView.setOnClickListener(this);
+      //  mUsernameTv.setOnClickListener(this);
+        mTvComment.setOnClickListener(this);
+        mTvOrder.setOnClickListener(this);
+        mImgComment.setOnClickListener(this);
+        mImgOrder.setOnClickListener(this);
+        mRlWans.setOnClickListener(this);
+        mRlAddr.setOnClickListener(this);
+        mRlPsw.setOnClickListener(this);
+        mRlSet.setOnClickListener(this);
+        mRlExit.setOnClickListener(this);
+    }
 
     @Override
     public void onResume() {
@@ -56,4 +88,36 @@ public class UserCenterFragment extends Fragment {
         super.onResume();
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.Usericon:
+                startActivity(new Intent(getActivity(), UserLoginActivity.class));
+                break;
+            case R.id.tvOrder:
+            case R.id.imgOrder:
+                //进入我的历史订单列表Activity
+                break;
+            case R.id.tvComment:
+            case R.id.imgComment:
+                //进入我的历史评价列表Activity
+                break;
+            case R.id.fg_me_addr_rl:
+                //进去我的地址列表，默认地址设置
+                break;
+            case R.id.fg_me_set_rl:
+                //进去设置，默认地址设置
+                break;
+            case R.id.fg_me_wanshan_rl:
+                //进去我的个人信息详情，默认地址设置
+                break;
+            case R.id.fg_me_psw_rl:
+                //进去修改密码，默认地址设置
+                break;
+            case R.id.fg_me_exit_rl:
+                //弹出退出登录对话框
+                break;
+
+        }
+    }
 }

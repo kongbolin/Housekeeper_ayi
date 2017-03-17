@@ -164,7 +164,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 break;
             //个人中心
             case R.id.rl_usercenter:
-                mViewPager.setCurrentItem(3);
+                mViewPager.setCurrentItem(2);
                 clearBottomView();
                 mUserCenterImg.setImageResource(R.mipmap.my_fill);
                 mUserCenterTv.setTextColor(getResources().getColor(R.color.colorMain));

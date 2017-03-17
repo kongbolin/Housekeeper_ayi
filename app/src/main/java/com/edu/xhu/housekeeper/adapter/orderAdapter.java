@@ -18,12 +18,12 @@ import java.util.List;
  * Created by skysoft on 2017/3/4.
  */
 
-public class OrderAdapter extends BaseAdapter {
+public class orderAdapter extends BaseAdapter {
     List<Order> businessList = null;
     Context mContext;
     LayoutInflater inflater;
 
-    public OrderAdapter(Context context, List<Order> businessList) {
+    public orderAdapter(Context context, List<Order> businessList) {
         this.businessList = businessList;
         mContext = context;
     }

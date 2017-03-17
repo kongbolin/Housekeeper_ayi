@@ -6,7 +6,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="190dp"
+        android:layout_height="200dp"
         android:background="@color/colorMain"
         android:paddingBottom="10dp"
         android:paddingTop="36dp">
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/Usericon"
             android:layout_centerHorizontal="true"
-            android:layout_margin="6dp"
+            android:layout_margin="8dp"
             android:text="贰悫"
             android:textColor="@color/colorWhite" />
     </RelativeLayout>
@@ -46,40 +46,46 @@
             android:background="#ffffff"></View>
 
         <ImageView
+            android:id="@+id/imgOrder"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
-            android:layout_toLeftOf="@+id/imgNight"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/tvOrder"
+            android:padding="3dp"
             android:src="@mipmap/orders" />
 
         <TextView
-            android:id="@+id/imgNight"
+            android:id="@+id/tvOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginRight="30dp"
             android:layout_toLeftOf="@+id/line"
+            android:padding="2dp"
             android:text="我的订单"
             android:textColor="@color/colorWhite"
             android:textSize="16sp" />
 
 
         <ImageView
-            android:id="@+id/imgTupian"
+            android:id="@+id/imgComment"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="30dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="10dp"
             android:layout_toRightOf="@+id/line"
+            android:padding="3dp"
             android:src="@mipmap/comment" />
 
         <TextView
+            android:id="@+id/tvComment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/imgTupian"
+            android:layout_toRightOf="@+id/imgComment"
+            android:padding="2dp"
             android:text="我的评价"
             android:textColor="@color/colorWhite"
             android:textSize="16sp" />
@@ -94,8 +100,8 @@
 
         <ImageView
             android:id="@+id/img_wanshan"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
             android:layout_centerVertical="true"
             android:src="@mipmap/pro" />
 
@@ -133,8 +139,8 @@
 
         <ImageView
             android:id="@+id/img_addr"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
             android:layout_centerVertical="true"
             android:src="@mipmap/address" />
 
@@ -172,8 +178,8 @@
 
         <ImageView
             android:id="@+id/img_psw"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
             android:layout_centerVertical="true"
             android:src="@mipmap/pencil" />
 
@@ -211,8 +217,8 @@
 
         <ImageView
             android:id="@+id/img_set"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
             android:layout_centerVertical="true"
             android:src="@mipmap/settings" />
 
@@ -250,8 +256,8 @@
 
         <ImageView
             android:id="@+id/img_exit"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
             android:layout_centerVertical="true"
             android:src="@mipmap/exit" />
 
