@@ -2,6 +2,7 @@ package com.edu.xhu.housekeeper.activity;
 
 import android.os.Bundle;
 
+import android.widget.Toast;
 import com.edu.xhu.housekeeper.R;
 
 /**
@@ -12,5 +13,6 @@ public class HouseKeeperLoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_h);
+        //Toast.makeText(this,M)
     }
 }
