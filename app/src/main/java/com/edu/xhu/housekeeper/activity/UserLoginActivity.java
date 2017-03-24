@@ -2,6 +2,7 @@ package com.edu.xhu.housekeeper.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
@@ -63,6 +64,7 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
     public static QQAuth mQQAuth;
     private UserInfo mInfo;
     private Tencent mTencent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,26 +103,26 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
                 break;
             //登录按钮
             case R.id.button_login:
-                mBtnLogin.setClickable(false);
-                final String phone = mEdtPhone.getText().toString();
-                String password = mEdtPassword.getText().toString();
-
+                mBtnLogin.setClickable(false);//禁止用户重复点击按钮进行登录
+                final String phone = mEdtPhone.getText().toString().trim();
+                final String password = mEdtPassword.getText().toString().trim();
                 //判空
                 if (phone.equals("") || password.equals("")) {
                     Toast.makeText(mContext, "不能留空！", Toast.LENGTH_SHORT).show();
+                    mBtnLogin.setClickable(true);
                     return;
                 }
-
                 //检查手机号码格式
                 if (!Utils.isMobileNum(phone)) {
                     Toast.makeText(mContext, "手机号码格式错误!", Toast.LENGTH_SHORT).show();
+                    mBtnLogin.setClickable(true);
                     return;
                 }
 
-                //联网发送数据
                 BmobQuery<User> query = new BmobQuery<User>();
-                //查询playerName叫“比目”的数据
+                //查询phone叫“比目”的数据
                 query.addWhereEqualTo("phone", phone);
+                query.addWhereEqualTo("password", password);
                 //返回50条数据，如果不加上这条语句，默认返回10条数据
                 query.setLimit(1);
                 //执行查询方法
@@ -129,74 +131,41 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
                     public void done(List<User> object, BmobException e) {
                         if (e == null) {
                             // toast("查询成功：共"+object.size()+"条数据。");
-                            for (User user : object) {
-                                //获得playerName的信息
-                                user.getName();
-                                //获得数据的objectId信息
-                                user.getObjectId();
-                                //获得createdAt数据创建时间（注意是：createdAt，不是createAt）
-                                user.getCreatedAt();
-                                Toast.makeText(mContext, "登录成功！name=" + user.getName(), Toast.LENGTH_LONG).show();
+                            if (object.size() < 1) {
+                                Toast.makeText(mContext, "用户不存在", Toast.LENGTH_LONG).show();
+                                mBtnLogin.setClickable(true);
+                            } else {
+                                for (User user : object) {
+                                    String psw1 = user.getPassword();
+                                    if (password.equals(psw1)) {
+                                        //保存登录数据
+                                        SharedPreferences mSharedPreferences = getSharedPreferences("ayi", Context.MODE_PRIVATE);
+                                        SharedPreferences.Editor editor = mSharedPreferences.edit();
+                                        editor.putString("user_id", user.getObjectId()+"");
+                                        editor.putString("user_mobile",user.getPhone()+"");
+                                        editor.putString("user_name",user.getName()+"");
+                                        editor.commit();
+                                        Toast.makeText(mContext, "登录成功！name=" + user.getName(), Toast.LENGTH_LONG).show();
+                                        startActivity(new Intent(UserLoginActivity.this,MainActivity.class));
+                                    } else {
+                                        Toast.makeText(mContext, "用户名与密码不匹配！", Toast.LENGTH_LONG).show();
+                                        mBtnLogin.setClickable(true);
+                                    }
+                                }
                             }
                         } else {
+                            mBtnLogin.setClickable(true);
                             Toast.makeText(mContext, "登录失败！失败：" + e.getMessage() + "," + e.getErrorCode(), Toast.LENGTH_LONG).show();
                             Log.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
                         }
                     }
                 });
-
-//                AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
-//                RequestParams rp = new RequestParams();
-//                rp.put("phone", phone);
-//                rp.put("password", password);
-//                asyncHttpClient.post(ZccApplication.IP_ADDRESS+"Login/user_login", rp, new AsyncHttpResponseHandler() {
-//                    @Override
-//                    public void onFailure(Throwable throwable, String s) {
-//                        Toast.makeText(LoginActivity.this, "网络连接失败 :(", Toast.LENGTH_SHORT).show();
-//                    }
-//
-//                    @Override
-//                    public void onSuccess(int i, String s) {
-//                        JSONObject jsonObject;
-//                        try {
-//                            jsonObject = new JSONObject(s);
-//                            String result = jsonObject.getString("code");
-//                            if (result.equals("success")) {
-//                                Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
-//
-//                                //存入SharePreference
-//                                User user = DBHelper.getInstance(mContext).findFirst(Selector.from(User.class).where("phone","=",phone));
-//                                ZccApplication.mUserId = user.getId()+"";
-//                                ZccApplication.editor.putString(ZccApplication.USERID_KEY,ZccApplication.mUserId);
-//                                ZccApplication.editor.commit();
-//
-//                                finish();
-//                            } else {
-//                                Toast.makeText(LoginActivity.this, "用户名或密码错误", Toast.LENGTH_SHORT).show();
-//                                mBtnLogin.setClickable(true);
-//                            }
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        } catch (DbException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                });
                 break;
             //qq登录按钮
             case R.id.button_qqlogin:
                 Toast.makeText(mContext, "QQ登录", Toast.LENGTH_LONG).show();
                 onClickLogin();
                 break;
-//            //微信登录
-//            case R.id.img_weixin:
-//                startActivity(new Intent(this, RegisterActivity.class));
-//                break;
-//            //微博登录
-//            case R.id.img_sina:
-//                startActivity(new Intent(this, RegisterActivity.class));
-//                break;
-            //注册按钮
             case R.id.tv_register:
                 startActivity(new Intent(this, RegisterActivity.class));
                 break;
@@ -271,8 +240,6 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
                         Bitmap bitmap = null;
                         try {
                             Log.d("zyq", json.getString("figureurl_qq_2"));
-//                                    bitmap = Util.getbitmap(json
-//                                            .getString("figureurl_qq_2"));
                         } catch (JSONException e) {
 
                         }
