@@ -124,11 +124,11 @@ public class UserCenterFragment extends Fragment implements View.OnClickListener
                 }
                 break;
             case R.id.fg_me_set_rl:
-                //进去设置，默认地址设置
+                //进去设置
                 startActivity(new Intent(getActivity(), SettingActivity.class));
                 break;
             case R.id.fg_me_wanshan_rl:
-                //进去我的个人信息详
+                //进去我的个人信息详情
                 if (UserID.equals("0")) {
                     showToast();
                 } else {
