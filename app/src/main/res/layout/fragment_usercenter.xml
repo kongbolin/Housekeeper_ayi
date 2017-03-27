@@ -13,8 +13,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/Usericon"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_centerHorizontal="true"
             android:layout_margin="10dp"
             android:scaleType="centerCrop"
@@ -25,8 +25,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/Usericon"
+            android:textSize="16sp"
             android:layout_centerHorizontal="true"
-            android:layout_margin="8dp"
+            android:layout_margin="6dp"
             android:text="贰悫"
             android:textColor="@color/colorWhite" />
     </RelativeLayout>

@@ -7,14 +7,41 @@ import cn.bmob.v3.datatype.BmobGeoPoint;
 /**
  * Created by skysoft on 2017/2/20.
  */
-public class User  extends BmobObject {
+public class User extends BmobObject {
     private String name;
     private String phone;
     private BmobGeoPoint gpsAdd;//位置信息
     private String password;
     private BmobFile img;//头像文件
+    private String imgUrl;//头像文件
     private String other;//qq、微博
     private String openID;
+    private String sex;
+    private String age;
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
 
     public String getOpenID() {
         return openID;

@@ -2,6 +2,7 @@ package com.edu.xhu.housekeeper.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -108,7 +109,7 @@ public class RegisterActivity extends BaseActivity {
                         if (e == null) {//短信验证码已验证成功
                             Log.i("bmob", "验证通过");
                             //开始注册，增加用户信息
-                            User user = new User();
+                            final User user = new User();
                             user.setPhone(phone);
                             user.setName(name);
                             user.setPassword(password);
@@ -116,7 +117,14 @@ public class RegisterActivity extends BaseActivity {
                                 @Override
                                 public void done(String objectId, BmobException e) {
                                     if (e == null) {//注册成功！
-                                        startActivity(new Intent(mContext,MainActivity.class));
+                                        startActivity(new Intent(mContext, MainActivity.class));
+                                        SharedPreferences mSharedPreferences = getSharedPreferences("ayi", Context.MODE_PRIVATE);
+                                        SharedPreferences.Editor editor = mSharedPreferences.edit();
+                                        editor.putString("user_id", objectId + "");
+                                        editor.putString("user_mobile", phone + "");
+                                        editor.putString("user_name", name + "");
+                                        editor.putString("user_img", "0");
+                                        editor.commit();
                                         Toast.makeText(getApplicationContext(), "添加数据成功，返回objectId为：" + objectId, Toast.LENGTH_LONG).show();
                                     } else {
                                         Toast.makeText(getApplicationContext(), "创建数据失败：" + e.getMessage(), Toast.LENGTH_LONG).show();
@@ -129,51 +137,6 @@ public class RegisterActivity extends BaseActivity {
                         }
                     }
                 });
-//                else {//开始注册，增加用户信息
-//                    AsyncHttpClient asyncHttp = new AsyncHttpClient();
-//                    RequestParams rp = new RequestParams();
-//                    rp.put("name", name);
-//                    rp.put("phone", phone);
-//                    rp.put("password", password);
-//                    rp.put("sex", "未知");
-//                    asyncHttp.post(ZccApplication.IP_ADDRESS + "Login/user_reg", rp, new AsyncHttpResponseHandler() {
-//                        @Override
-//                        public void onSuccess(int i, String s) {
-//                            try {
-//                                JSONObject jsonObject = new JSONObject(s);
-//                                String result = jsonObject.getString("code");
-//                                if (result.equals("success")) {
-//                                    Toast.makeText(RegisterActivity.this, "注册成功，请登录", Toast.LENGTH_SHORT).show();
-//                                    //保存user对象
-//                                    User user = new User();
-//                                    user.setName(name);
-//                                    user.setImgUrl("aliuser_place_holder");
-//                                    user.setPassword(password);
-//                                    user.setPhone(phone);
-//                                    user.setSex("未知");
-//                                    DBHelper.getInstance(mContext).save(user);
-//
-//                                    //将userId保存
-//                                    ZccApplication.mUserId = user.getId()+"";
-//                                    ZccApplication.editor.putString(ZccApplication.USERID_KEY, ZccApplication.mUserId);
-//                                    ZccApplication.editor.commit();
-//                                    finish();
-//                                } else {
-//                                    Toast.makeText(RegisterActivity.this, "注册失败", Toast.LENGTH_SHORT).show();
-//                                }
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            } catch (DbException e) {
-//                                e.printStackTrace();
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onFailure(Throwable throwable, String s) {
-//                            Toast.makeText(RegisterActivity.this, "网络连接失败 :(", Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-//                }
             }
         });
     }

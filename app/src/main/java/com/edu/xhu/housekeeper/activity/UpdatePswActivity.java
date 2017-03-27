@@ -32,7 +32,7 @@ public class UpdatePswActivity extends BaseActivity implements View.OnClickListe
     private EditText mEtPaw3;
     private Button mBtSave;
     private Context mContext;
-    String UserId;
+    private String UserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

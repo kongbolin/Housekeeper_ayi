@@ -31,6 +31,7 @@ import java.util.List;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.SaveListener;
 
 /**
  * Created by skysoft on 2017/2/21.
@@ -144,6 +145,7 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
                                         editor.putString("user_id", user.getObjectId()+"");
                                         editor.putString("user_mobile",user.getPhone()+"");
                                         editor.putString("user_name",user.getName()+"");
+                                        editor.putString("user_img",user.getImg().getUrl()+"");
                                         editor.commit();
                                         Toast.makeText(mContext, "登录成功！name=" + user.getName(), Toast.LENGTH_LONG).show();
                                         startActivity(new Intent(UserLoginActivity.this,MainActivity.class));
@@ -236,10 +238,14 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
                 @Override
                 public void onComplete(final Object response) {
                     JSONObject json = (JSONObject) response;
+                    final User user = new User();
+                  //  user.setPhone(phone);
+                    Log.d("zyq", json.toString());
                     if (json.has("figureurl")) {
                         Bitmap bitmap = null;
                         try {
                             Log.d("zyq", json.getString("figureurl_qq_2"));
+                            user.setImgUrl(json.getString("figureurl_qq_2"));
                         } catch (JSONException e) {
 
                         }
@@ -248,10 +254,31 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
                         try {
                             Log.d("zyq", json.toString());
                             Log.d("zyq", json.getString("nickname"));
+                            user.setName(json.getString("nickname"));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
+                    user.save(new SaveListener<String>() {
+                        @Override
+                        public void done(String objectId, BmobException e) {
+                            if (e == null) {//注册成功！
+                                startActivity(new Intent(mContext, MainActivity.class));
+                                SharedPreferences mSharedPreferences = getSharedPreferences("ayi", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = mSharedPreferences.edit();
+                                editor.putString("user_id", objectId + "");
+                                editor.putString("user_mobile","0");
+                                editor.putString("user_name", user.getName());
+                                editor.putString("user_img", user.getImgUrl());
+                                editor.putString("openid", "qq");
+                                editor.commit();
+                                Toast.makeText(getApplicationContext(), "添加数据成功，返回objectId为：" + objectId, Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "创建数据失败：" + e.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+
                 }
             };
             mInfo = new UserInfo(this, mQQAuth.getQQToken());
