@@ -15,7 +15,7 @@ public class User extends BmobObject {
     private BmobFile img;//头像文件
     private String imgUrl;//头像文件
     private String other;//qq、微博
-    private String openID;
+    private String openid;
     private String sex;
     private String age;
 
@@ -43,12 +43,12 @@ public class User extends BmobObject {
         this.imgUrl = imgUrl;
     }
 
-    public String getOpenID() {
-        return openID;
+    public String getOpenid() {
+        return openid;
     }
 
-    public void setOpenID(String openID) {
-        this.openID = openID;
+    public void setOpenid(String openid) {
+        this.openid = openid;
     }
 
     public String getOther() {

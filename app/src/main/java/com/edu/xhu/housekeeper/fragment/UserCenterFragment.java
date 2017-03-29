@@ -125,7 +125,7 @@ public class UserCenterFragment extends Fragment implements View.OnClickListener
     public void onStart() {
         if (UserID.equals("0")) {
             mUsernameTv.setText("未登录");
-        }else {
+        } else {
             SharedPreferences sp = getActivity().getSharedPreferences("ayi", Context.MODE_PRIVATE);
             UserName = sp.getString("user_name", "未登录");
         }
@@ -139,7 +139,7 @@ public class UserCenterFragment extends Fragment implements View.OnClickListener
     public void onResume() {
         if (UserID.equals("0")) {
             mUsernameTv.setText("未登录");
-        }else {
+        } else {
             SharedPreferences sp = getActivity().getSharedPreferences("ayi", Context.MODE_PRIVATE);
             UserName = sp.getString("user_name", "未登录");
         }

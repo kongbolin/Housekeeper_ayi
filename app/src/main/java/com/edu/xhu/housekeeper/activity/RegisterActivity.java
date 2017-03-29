@@ -26,21 +26,16 @@ import cn.bmob.v3.listener.SaveListener;
 /**
  * Created by skysoft on 2017/2/23.
  */
-public class RegisterActivity extends BaseActivity {
+public class RegisterActivity extends BaseActivity  {
     private ImageView mIvBack;
-
     private EditText mEdtName;
-
     private EditText mEdtPhone;
-
     private EditText mEdtPassword;
-
     private EditText mEdtYzm;
-
     private Button mBtnRegister;
-
     private TextView mTextYzm;
     private Context mContext;
+    private TextView mTvXieyi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +43,6 @@ public class RegisterActivity extends BaseActivity {
         setContentView(R.layout.activity_register);
         init();
     }
-
-
     private void init() {
         mContext = this;
         mIvBack = (ImageView) findViewById(R.id.image_rg_back);
@@ -59,6 +52,13 @@ public class RegisterActivity extends BaseActivity {
         mEdtYzm = (EditText) findViewById(R.id.edit_reg_yzm);
         mBtnRegister = (Button) findViewById(R.id.button_register);
         mTextYzm = (TextView) findViewById(R.id.text_reg_yzm);
+        mTvXieyi= (TextView) findViewById(R.id.tv_xieyi_content);
+        mTvXieyi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RegisterActivity.this,XieyiActivity.class));
+            }
+        });
         mTextYzm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,6 +126,7 @@ public class RegisterActivity extends BaseActivity {
                                         editor.putString("user_img", "0");
                                         editor.commit();
                                         Toast.makeText(getApplicationContext(), "添加数据成功，返回objectId为：" + objectId, Toast.LENGTH_LONG).show();
+                                        RegisterActivity.this.finish();
                                     } else {
                                         Toast.makeText(getApplicationContext(), "创建数据失败：" + e.getMessage(), Toast.LENGTH_LONG).show();
                                     }

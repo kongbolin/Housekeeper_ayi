@@ -48,6 +48,7 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
         mEdAge = (EditText) findViewById(R.id.et_update_info_age);
         mBtSave = (Button) findViewById(R.id.button_update_info);
         mBtSave.setOnClickListener(this);
+        mIvBack.setOnClickListener(this);
 
         SharedPreferences sp = getSharedPreferences("ayi", Context.MODE_PRIVATE);
         UserName = sp.getString("user_name", "未登录");

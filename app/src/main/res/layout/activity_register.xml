@@ -132,11 +132,12 @@
         android:textSize="12sp" />
 
     <TextView
+        android:id="@+id/tv_xieyi_content"
         android:layout_width="fill_parent"
         android:layout_height="20dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="《种草草用户使用条款》"
+        android:text="《阿姨来了用户使用条款》"
         android:textColor="@color/colorMain"
         android:textSize="12sp" />
 
