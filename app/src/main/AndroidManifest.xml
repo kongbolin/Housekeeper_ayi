@@ -131,10 +131,11 @@
         <activity android:name=".activity.RegisterActivity"></activity>
         <activity android:name=".activity.UpdatePswActivity"></activity>
         <activity android:name=".activity.UserInfoActivity"></activity>
-        <activity android:name=".activity.AddrListActivity"></activity>
         <activity android:name=".activity.SettingActivity"></activity>
         <activity android:name=".activity.AboutUsActivity"></activity>
         <activity android:name=".activity.XieyiActivity"></activity>
+        <activity android:name=".activity.FeedBacckActivity"></activity>
+        <activity android:name=".activity.CityListActivity"></activity>
 
 
         <service

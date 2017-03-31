@@ -131,44 +131,6 @@
         android:layout_marginRight="12dp"
         android:background="@color/colorLine"></View>
 
-    <RelativeLayout
-        android:id="@+id/fg_me_addr_rl"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp">
-
-        <ImageView
-            android:id="@+id/img_addr"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/address" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
-            android:layout_toRightOf="@+id/img_addr"
-            android:text="编辑家庭地址"
-            android:textColor="#000"
-            android:textSize="16sp" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/list_icon_more_normal" />
-    </RelativeLayout>
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="0.8dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:background="@color/colorLine"></View>
 
     <RelativeLayout
         android:id="@+id/fg_me_psw_rl"
@@ -247,7 +209,44 @@
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         android:background="@color/colorLine"></View>
+    <RelativeLayout
+        android:id="@+id/fg_me_addr_rl"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp">
 
+        <ImageView
+            android:id="@+id/img_addr"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/phone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/img_addr"
+            android:text="意见与反馈"
+            android:textColor="#000"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/list_icon_more_normal" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.8dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@color/colorLine"></View>
     <RelativeLayout
         android:id="@+id/fg_me_exit_rl"
         android:layout_width="match_parent"

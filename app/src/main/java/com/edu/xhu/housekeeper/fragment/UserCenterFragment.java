@@ -29,23 +29,18 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.Volley;
 import com.edu.xhu.housekeeper.R;
-import com.edu.xhu.housekeeper.activity.AddrListActivity;
-import com.edu.xhu.housekeeper.activity.MainActivity;
+import com.edu.xhu.housekeeper.activity.FeedBacckActivity;
 import com.edu.xhu.housekeeper.activity.SettingActivity;
 import com.edu.xhu.housekeeper.activity.UpdatePswActivity;
 import com.edu.xhu.housekeeper.activity.UserInfoActivity;
 import com.edu.xhu.housekeeper.activity.UserLoginActivity;
 import com.edu.xhu.housekeeper.entity.User;
-import com.edu.xhu.housekeeper.entity.share;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 
-import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.QueryListener;
-import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.listener.UploadFileListener;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -179,7 +174,7 @@ public class UserCenterFragment extends Fragment implements View.OnClickListener
                     showToast();
                 } else {
                     //进去我的地址列表，默认地址设置
-                    startActivity(new Intent(getActivity(), AddrListActivity.class));
+                    startActivity(new Intent(getActivity(), FeedBacckActivity.class));
                 }
                 break;
             case R.id.fg_me_set_rl:

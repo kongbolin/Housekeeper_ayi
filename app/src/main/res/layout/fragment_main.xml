@@ -3,11 +3,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-<TextView
-    android:layout_width="wrap_content"
-  android:layout_centerInParent="true"
-    android:text="首页"
-    android:id="@+id/text"
-    android:textSize="30dp"
-    android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:background="@color/colorMain">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:paddingBottom="12dp"
+            android:text="阿姨来了"
+            android:id="@+id/title"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_home_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="成都11"
+            android:textSize="12sp"
+            android:textColor="@color/colorWhite"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="14dp"
+            android:layout_marginLeft="12dp"
+             />
+        <ImageView
+            android:id="@+id/iv_home_city"
+            android:layout_toRightOf="@+id/tv_home_city"
+            android:layout_width="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="12dp"
+            android:src="@mipmap/down"
+            android:layout_height="20dp" />
+    </RelativeLayout>
 </RelativeLayout>

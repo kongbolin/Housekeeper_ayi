@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="5" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:background="@color/colorMain">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:paddingBottom="12dp"
+            android:text="意见与反馈"
+            android:id="@+id/title"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/iv_feed_back"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="6dp"
+            android:layout_marginLeft="4dp"
+            android:background="@mipmap/back"
+            android:padding="12dp" />
+    </RelativeLayout>
+    <EditText
+        android:id="@+id/edit_back_content"
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_margin="15dp"
+        android:background="@drawable/editview_login_style"
+        android:ems="10"
+        android:gravity="start"
+        android:hint="写下问题和意见，我们将为您不断的改进..."
+        android:inputType="textMultiLine"
+        android:textSize="15sp" >
+    </EditText>
+
+    <EditText
+        android:id="@+id/edit_back_phone"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/editview_login_style"
+        android:ems="10"
+        android:paddingLeft="15dp"
+        android:hint="联系电话"
+        android:inputType="number"
+        android:textSize="15sp" >
+    </EditText>
+
+    <Button
+        android:id="@+id/bt_back_submit"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/button_login_style"
+        android:textColor="#fff"
+        android:textSize="18sp"
+        android:text="提交" />
+
+</LinearLayout>

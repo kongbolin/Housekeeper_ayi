@@ -235,10 +235,10 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
                     }
                     if (json.has("nickname")) {
                         try {
-                            Log.d("zyq", json.toString());
                             Log.d("zyq", json.getString("nickname"));
                             user.setName(json.getString("nickname"));
-                            user.setOpenid(json.getString("qq"));
+                            user.setOpenid("qq");
+                            user.setPassword(json.getString("123456"));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -257,7 +257,7 @@ public class UserLoginActivity extends BaseActivity implements View.OnClickListe
                                 editor.putString("openid", "qq");
                                 editor.commit();
                                 UserLoginActivity.this.finish();
-                                Toast.makeText(getApplicationContext(), "添加数据成功，返回objectId为：" + objectId, Toast.LENGTH_LONG).show();
+                              //  Toast.makeText(getApplicationContext(), "添加数据成功", Toast.LENGTH_LONG).show();
                             } else {
                                 Toast.makeText(getApplicationContext(), "创建数据失败：" + e.getMessage(), Toast.LENGTH_LONG).show();
                             }

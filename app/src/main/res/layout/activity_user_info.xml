@@ -142,12 +142,6 @@
                 android:inputType="number"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
-        <!--<View-->
-            <!--android:layout_width="fill_parent"-->
-            <!--android:layout_height="0.8dp"-->
-            <!--android:layout_marginLeft="12dp"-->
-            <!--android:layout_marginRight="12dp"-->
-            <!--android:background="@color/colorLine"></View>-->
     </LinearLayout>
     <Button
         android:id="@+id/button_update_info"
