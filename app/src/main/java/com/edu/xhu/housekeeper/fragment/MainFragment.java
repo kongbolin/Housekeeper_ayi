@@ -1,6 +1,7 @@
 package com.edu.xhu.housekeeper.fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
@@ -18,12 +20,21 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.edu.xhu.housekeeper.R;
 import com.edu.xhu.housekeeper.activity.CityListActivity;
+import com.edu.xhu.housekeeper.adapter.CommonListAdapter;
+import com.jude.rollviewpager.RollPagerView;
+import com.jude.rollviewpager.adapter.StaticPagerAdapter;
+import com.jude.rollviewpager.hintview.ColorPointHintView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainFragment extends Fragment implements View.OnClickListener {
     private TextView mTvCity;
     private ImageView mIvCity;
     public LocationClient mLocationClient = null;
     public MyLocationListenner myListener = new MyLocationListenner();
+    private RollPagerView mRollViewPager;
+
 
     @Nullable
     @Override
@@ -40,9 +51,14 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         mIvCity.setOnClickListener(this);
         mLocationClient = new LocationClient(getActivity());
         mLocationClient.registerLocationListener(myListener);
-//        mTv = (TextView)findViewById(R.id.textview);
         setLocationOption();
         mLocationClient.start();
+        mRollViewPager = (RollPagerView) v.findViewById(R.id.roll_view_pager);
+        mRollViewPager.setPlayDelay(3000);
+        mRollViewPager.setAnimationDurtion(500);
+        mRollViewPager.setAdapter(new TestNormalAdapter());
+        mRollViewPager.setHintView(new ColorPointHintView(getActivity(), Color.YELLOW, Color.WHITE));
+
     }
 
     @Override
@@ -50,7 +66,8 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.tv_home_city:
             case R.id.iv_home_city:
-                Intent intent=new Intent(getActivity(), CityListActivity.class);
+                Intent intent = new Intent(getActivity(), CityListActivity.class);
+                intent.putExtra("city", mTvCity.getText().toString());
                 startActivityForResult(intent, 2);//表示可以返回结果
                 break;
         }
@@ -65,7 +82,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     class MyLocationListenner implements BDLocationListener {
         @Override
         public void onReceiveLocation(final BDLocation location) {
-           // mTvCity.setText(location.getCity());
+            // mTvCity.setText(location.getCity());
             final BDLocation location1 = location;
             new Thread() {
                 @Override
@@ -118,18 +135,43 @@ public class MainFragment extends Fragment implements View.OnClickListener {
             }
         }
     };
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         // TODO Auto-generated method stub
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==2){
-            if(requestCode==2){
-                int request = data.getIntExtra("city", 0);//接收返回数据
+        if (resultCode == 2) {
+            if (requestCode == 2) {
+                String request = data.getStringExtra("city");//接收返回数据
                 mTvCity.setText(String.valueOf(request));
             }
         }
 
     }
+
+    private class TestNormalAdapter extends StaticPagerAdapter {
+        private int[] imgs = {
+                R.mipmap.home_a,
+                R.mipmap.home_b,
+                R.mipmap.home_c,
+                R.mipmap.home_d,
+        };
+
+        @Override
+        public View getView(ViewGroup container, int position) {
+            ImageView view = new ImageView(container.getContext());
+            view.setImageResource(imgs[position]);
+            view.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            return view;
+        }
+
+        @Override
+        public int getCount() {
+            return imgs.length;
+        }
+    }
+
 }
 
 
