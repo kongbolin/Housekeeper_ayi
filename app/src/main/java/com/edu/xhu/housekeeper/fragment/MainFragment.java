@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
@@ -19,14 +19,13 @@ import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.edu.xhu.housekeeper.R;
+import com.edu.xhu.housekeeper.activity.AyiDetailsActivity;
 import com.edu.xhu.housekeeper.activity.CityListActivity;
-import com.edu.xhu.housekeeper.adapter.CommonListAdapter;
+import com.edu.xhu.housekeeper.activity.ServerDetailsActivity;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.adapter.StaticPagerAdapter;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainFragment extends Fragment implements View.OnClickListener {
     private TextView mTvCity;
@@ -34,6 +33,9 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     public LocationClient mLocationClient = null;
     public MyLocationListenner myListener = new MyLocationListenner();
     private RollPagerView mRollViewPager;
+    private View relativeLayout;
+    private View relativeLayout1;
+    private RelativeLayout mRlDaosao;
 
 
     @Nullable
@@ -58,7 +60,14 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         mRollViewPager.setAnimationDurtion(500);
         mRollViewPager.setAdapter(new TestNormalAdapter());
         mRollViewPager.setHintView(new ColorPointHintView(getActivity(), Color.YELLOW, Color.WHITE));
-
+        relativeLayout = v.findViewById(R.id.ayi_1);
+        relativeLayout1 = v.findViewById(R.id.ayi_2);
+        relativeLayout.setOnClickListener(this);
+        relativeLayout1.setOnClickListener(this);
+        relativeLayout.setBackgroundColor(getResources().getColor(R.color.colorMain));
+        relativeLayout1.setBackgroundColor(getResources().getColor(R.color.colorMain));
+        mRlDaosao= (RelativeLayout) v.findViewById(R.id.home_rl_dasao);
+        mRlDaosao.setOnClickListener(this);
     }
 
     @Override
@@ -69,6 +78,15 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 Intent intent = new Intent(getActivity(), CityListActivity.class);
                 intent.putExtra("city", mTvCity.getText().toString());
                 startActivityForResult(intent, 2);//表示可以返回结果
+                break;
+            case R.id.ayi_1:
+                startActivity(new Intent(getActivity(), AyiDetailsActivity.class));
+                break;
+            case R.id.ayi_2:
+                startActivity(new Intent(getActivity(), AyiDetailsActivity.class));
+                break;
+            case R.id.home_rl_dasao:
+                startActivity(new Intent(getActivity(), ServerDetailsActivity.class));
                 break;
         }
     }

@@ -376,10 +376,18 @@
                     android:textColor="@color/colorMain"
                     android:textSize="18dp" />
             </RelativeLayout>
+
+            <include
+                android:id="@+id/ayi_1"
+                layout="@layout/item_ayi"></include>
+
             <include layout="@layout/item_ayi"></include>
-            <!--<include layout="@layout/item_ayi"></include>-->
-            <!--<include layout="@layout/item_ayi"></include>-->
-            <!--<include layout="@layout/item_ayi"></include>-->
+
+            <include
+                android:id="@+id/ayi_2"
+                layout="@layout/item_ayi"></include>
+
+            <include layout="@layout/item_ayi"></include>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

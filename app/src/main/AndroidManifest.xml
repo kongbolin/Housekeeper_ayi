@@ -136,8 +136,8 @@
         <activity android:name=".activity.XieyiActivity"></activity>
         <activity android:name=".activity.FeedBacckActivity"></activity>
         <activity android:name=".activity.CityListActivity"></activity>
-
-
+        <activity android:name=".activity.AyiDetailsActivity"></activity>
+        <activity android:name=".activity.ServerDetailsActivity"></activity>
         <service
             android:name="cn.bmob.push.lib.service.PushService"
             android:exported="true"

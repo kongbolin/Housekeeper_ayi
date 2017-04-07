@@ -1,6 +1,5 @@
 package com.edu.xhu.housekeeper.activity;
 
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.edu.xhu.housekeeper.R;
-import com.edu.xhu.housekeeper.activity.BaseActivity;
 import com.edu.xhu.housekeeper.adapter.CommonListAdapter;
 
 import java.util.ArrayList;
