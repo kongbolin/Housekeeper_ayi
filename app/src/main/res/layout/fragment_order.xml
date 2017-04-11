@@ -3,25 +3,151 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:background="@color/colorMain"
-        android:layout_height="68dp">
+        android:layout_height="68dp"
+        android:background="@color/colorMain">
+
         <TextView
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:paddingBottom="12dp"
             android:text="订单"
             android:textColor="@color/colorWhite"
-            android:layout_centerHorizontal="true"
-            android:textSize="20sp"
-            android:paddingBottom="12dp"
-            android:layout_alignParentBottom="true"
-            android:layout_height="wrap_content" />
+            android:textSize="20sp" />
 
     </RelativeLayout>
-    <TextView
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="1.6dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="26dp"
+            android:background="@color/colorMain"></View>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:text="已完成订单"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:background="@color/colorLine"></View>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_margin="10dp"
+        android:background="@color/colorWhite">
+
+        <TextView
+            android:id="@+id/order_type_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="底板打蜡"
+            android:textColor="#000" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="15dp"
+            android:text="已完成 &gt;" />
+
+        <ImageView
+            android:id="@+id/order_time_iv"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:layout_below="@+id/order_type_tv"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="2dp"
+            android:src="@mipmap/timesss" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/order_type_tv"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/order_time_iv"
+            android:text="3月29日  10:30"
+            android:textSize="12dp" />
+
+        <ImageView
+            android:id="@+id/order_addr_iv"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_below="@+id/order_time_iv"
+            android:layout_marginLeft="11dp"
+            android:src="@mipmap/dot" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/order_time_iv"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@+id/order_time_iv"
+            android:text="武侯区英郡二期"
+            android:textSize="12dp" />
+
+        <ImageView
+            android:id="@+id/order_hou_iv"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_below="@+id/order_addr_iv"
+            android:layout_marginLeft="11dp"
+            android:src="@mipmap/dot1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/order_addr_iv"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@+id/order_time_iv"
+            android:text="￥320元"
+            android:textSize="12dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="订单"
-        android:textSize="30dp" />
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/order_null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/act_uncomment" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/order_null"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="订单列表为空"
+            android:textSize="18dp" />
+    </RelativeLayout>
+
 </LinearLayout>

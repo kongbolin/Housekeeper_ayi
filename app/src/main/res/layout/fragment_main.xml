@@ -97,7 +97,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignTop="@+id/home_iv_dasao"
                         android:layout_marginLeft="10dp"
-                        android:text="日常打扫"
+                        android:text="日常保洁"
                         android:textColor="#000"
                         android:textSize="16dp" />
 
@@ -130,6 +130,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/home_rl_dala"
                     android:layout_width="0dp"
                     android:layout_height="72dp"
                     android:layout_weight="1">
@@ -225,6 +226,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/home_rl_xinju"
                     android:layout_width="0dp"
                     android:layout_height="72dp"
                     android:layout_weight="1">
@@ -320,6 +322,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/home_rl_bx"
                     android:layout_width="0dp"
                     android:layout_height="72dp"
                     android:layout_weight="1">
@@ -381,13 +384,17 @@
                 android:id="@+id/ayi_1"
                 layout="@layout/item_ayi"></include>
 
-            <include layout="@layout/item_ayi"></include>
-
             <include
                 android:id="@+id/ayi_2"
                 layout="@layout/item_ayi"></include>
 
-            <include layout="@layout/item_ayi"></include>
+            <include
+                android:id="@+id/ayi_3"
+                layout="@layout/item_ayi"></include>
+
+            <include
+                android:id="@+id/ayi_4"
+                layout="@layout/item_ayi"></include>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

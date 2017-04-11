@@ -237,11 +237,8 @@ public class UserCenterFragment extends Fragment implements View.OnClickListener
     private void updateimage() {
         // TODO Auto-generated method stub
         Intent intent = new Intent();
-                /* 开启Pictures画面Type设定为image */
         intent.setType("image/*");
-                /* 使用Intent.ACTION_GET_CONTENT这个Action */
         intent.setAction(Intent.ACTION_GET_CONTENT);
-                /* 取得相片后返回本画面 */
         startActivityForResult(intent, 1);
 
     }
@@ -283,7 +280,6 @@ public class UserCenterFragment extends Fragment implements View.OnClickListener
         file.upload(new UploadFileListener() {
             @Override
             public void done(BmobException e) {
-
                 User user1 = new User();
                 user1.setImg(file);
                 user1.update(UserID, new UpdateListener() {
@@ -316,7 +312,6 @@ public class UserCenterFragment extends Fragment implements View.OnClickListener
                     @Override
                     public void onResponse(Bitmap arg0) {
                         imageView.setImageBitmap(arg0);
-                        // Toast.makeText(getActivity(), "头像修改成功!", Toast.LENGTH_SHORT).show();
                     }
                 }, 300, 200, Bitmap.Config.ARGB_8888,
                 new Response.ErrorListener() {

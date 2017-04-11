@@ -14,12 +14,13 @@
             android:orientation="vertical">
 
 
-            <RelativeLayout
+             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="68dp"
                 android:background="@color/colorMain">
 
                 <TextView
+                    android:id="@+id/ser_details_tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -30,7 +31,7 @@
                     android:textSize="20sp" />
 
                 <ImageView
-                    android:id="@+id/iv_update_info_back"
+                    android:id="@+id/iv_ser_details_back"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:layout_alignParentBottom="true"
@@ -44,6 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
+                android:id="@+id/ser_details_iv_title"
                 android:src="@mipmap/details_shafa" />
 
             <RelativeLayout
@@ -52,10 +54,11 @@
                 android:background="@color/colorWhite">
 
                 <TextView
+                    android:id="@+id/ser_details_tv_price1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="20dp"
                     android:text="120元起"
                     android:textColor="@color/colorMain"
                     android:textSize="16dp" />
@@ -65,13 +68,62 @@
                     android:layout_height="38dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/btn_ser_detail"
                     android:background="@drawable/button_login_style"
                     android:text="立即预约"
                     android:textColor="@color/colorWhite"
                     android:textSize="16dp" />
             </RelativeLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="1.6dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/colorMain"></View>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:text="收费标准"
+                    android:textSize="12dp" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:background="@color/colorLine"></View>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:background="@color/colorWhite">
+
+                <TextView
+                    android:id="@+id/ser_details_tv_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerVertical="true"
+                    android:background="@color/colorWhite"
+                    android:text="60元/座，不足两座按两座算。"
+                    android:textColor="#000"
+                    android:textSize="14dp" />
+
+            </RelativeLayout>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="12dp"></View>
@@ -110,21 +162,26 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/ser_details_tv_cont"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
                     android:background="@color/colorWhite"
                     android:lineSpacingExtra="8dp"
                     android:text="皮沙发是采用动物皮，如猪皮、牛皮、羊皮等动物皮，经过特定工艺加工成的皮革做成的座椅，由于制成的皮革，具有透气，重要的是柔软性非常好等功能，因而用它来制成座椅，人坐起来就非常舒服，也不容易脏。一套时尚的皮沙发摆在客厅里，还显得美观、高贵、大方等。由于皮沙发使用一段很长时间后，内部的油脂会挥发走失而变硬，因而要保养护理。"
                     android:textColor="#000"
-                    android:textSize="12dp" />
+                    android:textSize="14dp" />
 
                 <ImageView
+                    android:id="@+id/ser_details_iv_cont"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
+                    android:layout_height="120dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:scaleType="centerCrop"
                     android:src="@mipmap/bus_shafa" />
             </LinearLayout>
@@ -135,6 +192,7 @@
                 android:background="@color/colorLine"></View>
 
             <LinearLayout
+                android:id="@+id/ll_ser_details"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@color/colorWhite"

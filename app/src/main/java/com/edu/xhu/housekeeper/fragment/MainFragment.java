@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ import com.jude.rollviewpager.adapter.StaticPagerAdapter;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 
 
+
 public class MainFragment extends Fragment implements View.OnClickListener {
     private TextView mTvCity;
     private ImageView mIvCity;
@@ -36,7 +38,12 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     private View relativeLayout;
     private View relativeLayout1;
     private RelativeLayout mRlDaosao;
-
+    private RelativeLayout mRlDala;
+    private RelativeLayout mRlBx;
+    private RelativeLayout mRlXinju;
+    private RelativeLayout mRlBoli;
+    private RelativeLayout mRlShafa;
+    private TestNormalAdapter viewpagerAdapter;
 
     @Nullable
     @Override
@@ -58,16 +65,30 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         mRollViewPager = (RollPagerView) v.findViewById(R.id.roll_view_pager);
         mRollViewPager.setPlayDelay(3000);
         mRollViewPager.setAnimationDurtion(500);
-        mRollViewPager.setAdapter(new TestNormalAdapter());
+        viewpagerAdapter=new TestNormalAdapter();
+        mRollViewPager.setAdapter(viewpagerAdapter);
         mRollViewPager.setHintView(new ColorPointHintView(getActivity(), Color.YELLOW, Color.WHITE));
         relativeLayout = v.findViewById(R.id.ayi_1);
         relativeLayout1 = v.findViewById(R.id.ayi_2);
         relativeLayout.setOnClickListener(this);
         relativeLayout1.setOnClickListener(this);
-        relativeLayout.setBackgroundColor(getResources().getColor(R.color.colorMain));
-        relativeLayout1.setBackgroundColor(getResources().getColor(R.color.colorMain));
-        mRlDaosao= (RelativeLayout) v.findViewById(R.id.home_rl_dasao);
+        mRlDaosao = (RelativeLayout) v.findViewById(R.id.home_rl_dasao);
         mRlDaosao.setOnClickListener(this);
+
+        mRlDala = (RelativeLayout) v.findViewById(R.id.home_rl_dala);
+        mRlDala.setOnClickListener(this);
+
+        mRlShafa = (RelativeLayout) v.findViewById(R.id.home_rl_shafa);
+        mRlShafa.setOnClickListener(this);
+
+        mRlXinju = (RelativeLayout) v.findViewById(R.id.home_rl_xinju);
+        mRlXinju.setOnClickListener(this);
+
+        mRlBx = (RelativeLayout) v.findViewById(R.id.home_rl_bx);
+        mRlBx.setOnClickListener(this);
+
+        mRlBoli = (RelativeLayout) v.findViewById(R.id.home_rl_boli);
+        mRlBoli.setOnClickListener(this);
     }
 
     @Override
@@ -86,9 +107,31 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 startActivity(new Intent(getActivity(), AyiDetailsActivity.class));
                 break;
             case R.id.home_rl_dasao:
-                startActivity(new Intent(getActivity(), ServerDetailsActivity.class));
+                startDetails("日常保洁");
+                break;
+            case R.id.home_rl_boli:
+                startDetails("擦玻璃");
+                break;
+            case R.id.home_rl_dala:
+                startDetails("地板打蜡");
+                break;
+            case R.id.home_rl_bx:
+                startDetails("冰箱清洗");
+                break;
+            case R.id.home_rl_xinju:
+                startDetails("新居开荒");
+                break;
+            case R.id.home_rl_shafa:
+                startDetails("真皮沙发保养");
                 break;
         }
+    }
+
+    private void startDetails(String types) {
+        Intent intent1 = new Intent();
+        intent1.putExtra("type", types);
+        intent1.setClass(getActivity(), ServerDetailsActivity.class);
+        startActivity(intent1);
     }
 
     //设置相关参数
@@ -176,11 +219,31 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         };
 
         @Override
-        public View getView(ViewGroup container, int position) {
+        public View getView(ViewGroup container, final int position) {
             ImageView view = new ImageView(container.getContext());
             view.setImageResource(imgs[position]);
             view.setScaleType(ImageView.ScaleType.CENTER_CROP);
             view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    switch (position){
+                        case 0:
+                            startDetails("日常保洁");
+                            break;
+                        case 1:
+                            startDetails("地板打蜡");
+                            break;
+                        case 2:
+                            startDetails("新居开荒");
+                            break;
+                        case 3:
+                            startDetails("擦玻璃");
+                            break;
+                    }
+
+                }
+            });
             return view;
         }
 

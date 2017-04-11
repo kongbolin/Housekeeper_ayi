@@ -138,6 +138,7 @@
         <activity android:name=".activity.CityListActivity"></activity>
         <activity android:name=".activity.AyiDetailsActivity"></activity>
         <activity android:name=".activity.ServerDetailsActivity"></activity>
+        <activity android:name=".activity.CreatOrderActivity"></activity>
         <service
             android:name="cn.bmob.push.lib.service.PushService"
             android:exported="true"

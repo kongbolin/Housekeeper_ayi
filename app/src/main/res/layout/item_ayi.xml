@@ -12,7 +12,7 @@
         android:layout_centerVertical="true"
         android:layout_margin="10dp"
         android:scaleType="centerCrop"
-        android:src="@mipmap/home_richang"></de.hdodenhof.circleimageview.CircleImageView>
+        android:src="@mipmap/worker8"></de.hdodenhof.circleimageview.CircleImageView>
 
     <TextView
         android:id="@+id/ayi_item_name"
