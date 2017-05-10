@@ -119,7 +119,7 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
                     telephoneNum = object.getPhone();
                     queryUserInfo(userId);
                 } else {
-                    Log.e("bmob", e + "");
+                    Log.e("ayi", e + "");
                 }
             }
         });
@@ -136,7 +136,7 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
                     nameText.setText(userName);
                     loadImgByVolley(potoUrl,photoImage);
                 } else {
-                    Log.e("bmob", e + "");
+                    Log.e("ayi", e + "");
                 }
             }
         });
@@ -173,7 +173,7 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
                     //加载失败
                     @Override
                     public void onErrorResponse(VolleyError arg0) {
-                        imageView.setImageResource(R.mipmap.img_share_sina);
+                        imageView.setImageResource(R.mipmap.user_center_head_icon);
                     }
                 });
         //将图片加载放入请求队列中去
@@ -200,15 +200,15 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
             case R.id.button_grab:
                 Log.d("Debug","onclick");
                 updateService();
-//                BmobSMS.requestSMSCode(getApplicationContext(), telephoneNum, "抢单成功", new RequestSMSCodeListener() {
-//                    @Override
-//                    public void done(Integer smsId, cn.bmob.sms.exception.BmobException e) {
-//                        if (e == null) {//验证码发送成功
-//                            updateService();
-//                            Log.i("bmob", "短信id：" + smsId);//用于查询本次短信发送详情
-//                        }
-//                    }
-//                });
+                BmobSMS.requestSMSCode(getApplicationContext(), telephoneNum, "抢单成功", new RequestSMSCodeListener() {
+                    @Override
+                    public void done(Integer smsId, cn.bmob.sms.exception.BmobException e) {
+                        if (e == null) {//短信发送成功
+                            updateService();
+                            Log.i("ayi", "短信id：" + smsId);//用于查询本次短信发送详情
+                        }
+                    }
+                });
                 break;
             case R.id.iv_order_details_back:
                 setResult(1, new Intent());
@@ -233,7 +233,7 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
                     finish();
                     Toast.makeText(getApplicationContext(),"抢单成功",Toast.LENGTH_SHORT).show();
                 } else {
-                    Log.i("bmob", "抢单失败：" + e.getMessage() + "," + e.getErrorCode());
+                    Log.i("ayi", "抢单失败：" + e.getMessage() + "," + e.getErrorCode());
                 }
             }
         });

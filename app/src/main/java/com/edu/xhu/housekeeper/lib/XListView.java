@@ -60,10 +60,7 @@ public class XListView extends ListView implements OnScrollListener {
 
 	private final static int SCROLL_DURATION = 400; // scroll back duration
 	private final static int PULL_LOAD_MORE_DELTA = 50; // when pull up >= 50px
-														// at bottom, trigger
-														// load more.
 	private final static float OFFSET_RADIO = 1.8f; // support iOS like pull
-													// feature.
 
 	/**
 	 * @param context
@@ -85,11 +82,8 @@ public class XListView extends ListView implements OnScrollListener {
 
 	private void initWithContext(Context context) {
 		mScroller = new Scroller(context, new DecelerateInterpolator());
-		// XListView need the scroll event, and it will dispatch the event to
-		// user's listener (as a proxy).
 		super.setOnScrollListener(this);
 
-		// init header view
 		mHeaderView = new XListViewHeader(context);
 		mHeaderViewContent = (RelativeLayout) mHeaderView
 				.findViewById(R.id.xlistview_header_content);
@@ -97,10 +91,8 @@ public class XListView extends ListView implements OnScrollListener {
 				.findViewById(R.id.xlistview_header_time);
 		addHeaderView(mHeaderView);
 
-		// init footer view
 		mFooterView = new XListViewFooter(context);
 
-		// init header height
 		mHeaderView.getViewTreeObserver().addOnGlobalLayoutListener(
 				new OnGlobalLayoutListener() {
 					@Override

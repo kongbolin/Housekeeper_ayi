@@ -103,9 +103,7 @@ public class HouseKeeperServiceActivity extends BaseActivity implements View.OnC
 
     public void initData(){
         BmobQuery<Order> query = new BmobQuery<Order>();
-        //查询phone叫“比目”的数据
         query.addWhereEqualTo("state", "0");
-//        Log.d("Debug","start:"+start);
         query.setSkip(start);
         query.setLimit(10);
         //执行查询方法
@@ -114,8 +112,6 @@ public class HouseKeeperServiceActivity extends BaseActivity implements View.OnC
             @Override
             public void done(List<Order> object, BmobException e) {
                 if (e == null) {
-                    // toast("查询成功：共"+object.size()+"条数据。");
-
                     if (object.size() < 1) {
                         Toast.makeText(getApplicationContext(), "没有订单", Toast.LENGTH_LONG).show();
                     } else {
@@ -189,7 +185,6 @@ public class HouseKeeperServiceActivity extends BaseActivity implements View.OnC
             public void onLoadMore() {
                 firstCome = false;
                 initData();
-
                 onLoad();
             }
         });

@@ -9,6 +9,16 @@
         android:layout_height="200dp"
         android:background="@color/colorMain"
     >
+
+        <ImageView
+            android:id="@+id/go_iv_back"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginLeft="4dp"
+            android:background="@mipmap/back"
+            android:padding="12dp" />
         <TextView
                 android:textSize="36sp"
                 android:textColor="#ffffff"
