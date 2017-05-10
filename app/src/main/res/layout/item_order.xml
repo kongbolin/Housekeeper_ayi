@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_margin="10dp"
+        android:background="@color/colorWhite">
+
+        <TextView
+            android:id="@+id/order_type_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="底板打蜡"
+            android:textColor="#000" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="15dp"
+            android:text="已完成 &gt;" />
+
+        <ImageView
+            android:id="@+id/order_time_iv"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:layout_below="@+id/order_type_tv"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="2dp"
+            android:src="@mipmap/timesss" />
+
+        <TextView
+            android:id="@+id/order_start_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/order_type_tv"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/order_time_iv"
+            android:text="3月29日  10:30"
+            android:textSize="12dp" />
+
+        <ImageView
+            android:id="@+id/order_addr_iv"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_below="@+id/order_time_iv"
+            android:layout_marginLeft="11dp"
+            android:src="@mipmap/dot" />
+
+        <TextView
+            android:id="@+id/order_addr_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/order_time_iv"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@+id/order_time_iv"
+            android:text="武侯区英郡二期"
+            android:textSize="12dp" />
+
+        <ImageView
+            android:id="@+id/order_hou_iv"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_below="@+id/order_addr_iv"
+            android:layout_marginLeft="11dp"
+            android:src="@mipmap/dot1" />
+
+        <TextView
+            android:id="@+id/order_money_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/order_addr_iv"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@+id/order_time_iv"
+            android:text="￥320元"
+            android:textSize="12dp" />
+    </RelativeLayout>
+</LinearLayout>
