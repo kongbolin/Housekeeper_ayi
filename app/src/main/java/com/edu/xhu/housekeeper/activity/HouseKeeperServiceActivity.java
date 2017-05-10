@@ -242,6 +242,7 @@ public class HouseKeeperServiceActivity extends BaseActivity implements View.OnC
         BmobQuery<Order> query = new BmobQuery<Order>();
         query.addWhereEqualTo("hid",ayiId );
         query.addWhereLessThan("state", "3");
+        query.addWhereNotEqualTo("state","-1");
         query.order("-updatedAt");
         query.findObjects(new FindListener<Order>() {
             @Override

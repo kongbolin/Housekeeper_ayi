@@ -114,7 +114,6 @@ public class HouseKeeperLoginActivity extends BaseActivity implements View.OnCli
                                         startActivity(new Intent(HouseKeeperLoginActivity.this, HouseKeeperServiceActivity.class));
                                         updateBmobInstallation();
                                         HouseKeeperLoginActivity.this.finish();
-
                                     } else {
                                         Toast.makeText(getApplicationContext(), "用户名与密码不匹配！", Toast.LENGTH_LONG).show();
                                         mBtnLogin.setClickable(true);
@@ -155,13 +154,11 @@ public class HouseKeeperLoginActivity extends BaseActivity implements View.OnCli
                                 if(e==null){
                                     Log.i("ayi", "更新成功");
                                 }else{
-                                    //    loge(e);
                                 }
                             }
                         });
                     }
                 }else{
-                    //  loge(e);
                 }
             }
         });

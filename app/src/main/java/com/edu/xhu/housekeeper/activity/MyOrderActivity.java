@@ -53,7 +53,6 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
         BmobQuery<Order> query = new BmobQuery<Order>();
         query.addWhereEqualTo("hid", UserID);
         Log.d("Debug",UserID);
-        query.addWhereEqualTo("state","3");
         query.addWhereEqualTo("state","4");
         query.order("-updatedAt");
         query.setLimit(10);
