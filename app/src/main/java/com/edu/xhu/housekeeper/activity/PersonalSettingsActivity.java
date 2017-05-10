@@ -94,7 +94,7 @@ public class PersonalSettingsActivity extends BaseActivity implements View.OnCli
                     //加载失败
                     @Override
                     public void onErrorResponse(VolleyError arg0) {
-                        imageView.setImageResource(R.mipmap.img_share_sina);
+                        imageView.setImageResource(R.mipmap.user_center_head_icon);
                     }
                 });
         //将图片加载放入请求队列中去

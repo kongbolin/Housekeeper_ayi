@@ -94,7 +94,7 @@ public class OrderListAdapter extends BaseAdapter {
                         public void done(Integer smsId, cn.bmob.sms.exception.BmobException e) {
                             if (e == null) {//验证码发送成功
                                 updateService(orderList.get(position));
-                                Log.i("bmob", "短信id：" + smsId);//用于查询本次短信发送详情
+                                Log.i("ayi", "短信id：" + smsId);//用于查询本次短信发送详情
                             }
                         }
                     });
@@ -146,7 +146,7 @@ public class OrderListAdapter extends BaseAdapter {
                 if (e == null) {
                     Toast.makeText(mContext,"抢单成功",Toast.LENGTH_SHORT).show();
                 } else {
-                    Log.i("bmob", "抢单失败：" + e.getMessage() + "," + e.getErrorCode());
+                    Log.i("ayi", "抢单失败：" + e.getMessage() + "," + e.getErrorCode());
                 }
             }
         });

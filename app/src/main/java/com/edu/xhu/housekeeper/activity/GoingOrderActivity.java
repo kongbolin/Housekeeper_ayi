@@ -102,7 +102,7 @@ public class GoingOrderActivity extends BaseActivity implements View.OnClickList
                     telephoneNum = object.getPhone();
                     queryUserInfo(userId);
                 } else {
-                    Log.e("bmob", e + "");
+                    Log.e("ayi", e + "");
                 }
             }
         });
@@ -117,7 +117,7 @@ public class GoingOrderActivity extends BaseActivity implements View.OnClickList
                     String userName = object.getName();
                     customName.setText(userName);
                 } else {
-                    Log.e("bmob", e + "");
+                    Log.e("ayi", e + "");
                 }
             }
         });

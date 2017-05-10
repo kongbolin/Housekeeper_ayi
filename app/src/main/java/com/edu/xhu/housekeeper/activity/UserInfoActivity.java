@@ -72,7 +72,7 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
                     if (name != null)
                         mEdName.setText(name);
                 } else {
-                    Log.e("bmob", e + "");
+                    Log.e("ayi", e + "");
                 }
             }
         });
@@ -110,9 +110,9 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
                             editor.putString("user_name", user1.getName() + "");
                             editor.commit();
                             Toast.makeText(UserInfoActivity.this, "保存成功!", Toast.LENGTH_SHORT).show();
-                            Log.i("bmob", "密码修改成功！");
+                            Log.i("ayi", "修改成功！");
                         } else {
-                            Log.i("bmob", "密码修改失败：" + e.getMessage() + "," + e.getErrorCode());
+                            Log.i("ayi", "修改失败：" + e.getMessage() + "," + e.getErrorCode());
                         }
                     }
                 });

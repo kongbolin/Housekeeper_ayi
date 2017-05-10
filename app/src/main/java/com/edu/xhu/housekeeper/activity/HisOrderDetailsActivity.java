@@ -119,7 +119,7 @@ public class HisOrderDetailsActivity extends BaseActivity implements View.OnClic
                     String ration = object.getRate();
                     ratingBar.setRating(Float.parseFloat(ration));
                 } else {
-                    Log.e("bmob", e + "");
+                    Log.e("ayi", e + "");
                 }
             }
         });
@@ -136,7 +136,7 @@ public class HisOrderDetailsActivity extends BaseActivity implements View.OnClic
                     nameText.setText(userName);
                     loadImgByVolley(potoUrl,photoImage);
                 } else {
-                    Log.e("bmob", e + "");
+                    Log.e("ayi", e + "");
                 }
             }
         });
@@ -158,7 +158,7 @@ public class HisOrderDetailsActivity extends BaseActivity implements View.OnClic
                     //加载失败
                     @Override
                     public void onErrorResponse(VolleyError arg0) {
-                        imageView.setImageResource(R.mipmap.img_share_sina);
+                        imageView.setImageResource(R.mipmap.user_center_head_icon);
                     }
                 });
         //将图片加载放入请求队列中去

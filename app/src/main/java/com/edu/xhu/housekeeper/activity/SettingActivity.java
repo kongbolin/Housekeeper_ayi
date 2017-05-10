@@ -37,14 +37,12 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
     private void initView() {
         mIvBack = (ImageView) findViewById(R.id.iv_set_back);
-//        mRlHello = (RelativeLayout) findViewById(R.id.set_rl_hello);
         mRlXie = (RelativeLayout) findViewById(R.id.set_rl_xieyi);
         mRlAbout = (RelativeLayout) findViewById(R.id.set_rl_about);
         mRlClean = (RelativeLayout) findViewById(R.id.set_rl_clean);
         mTvCache = (TextView) findViewById(R.id.set_tv_cache);
 
         mIvBack.setOnClickListener(this);
-//        mRlHello.setOnClickListener(this);
         mRlAbout.setOnClickListener(this);
         mRlXie.setOnClickListener(this);
         mRlClean.setOnClickListener(this);

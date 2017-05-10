@@ -83,7 +83,7 @@ public class AyiInfoActivity extends BaseActivity implements View.OnClickListene
                     if(comment!=null)
                     mComment.setText(comment);
                 } else {
-                    Log.e("bmob", e + "");
+                    Log.e("ayi", e + "");
                 }
             }
         });
@@ -127,9 +127,9 @@ public class AyiInfoActivity extends BaseActivity implements View.OnClickListene
                             editor.putString("ayi_name", user1.getName() + "");
                             editor.commit();
                             Toast.makeText(AyiInfoActivity.this, "保存成功!", Toast.LENGTH_SHORT).show();
-                            Log.i("bmob", "密码修改成功！");
+                            Log.i("ayi", "修改成功！");
                         } else {
-                            Log.i("bmob", "密码修改失败：" + e.getMessage() + "," + e.getErrorCode());
+                            Log.i("ayi", "修改失败：" + e.getMessage() + "," + e.getErrorCode());
                         }
                     }
                 });

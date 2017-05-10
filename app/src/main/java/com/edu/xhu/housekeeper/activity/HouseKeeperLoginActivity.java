@@ -124,7 +124,7 @@ public class HouseKeeperLoginActivity extends BaseActivity implements View.OnCli
                         } else {
                             mBtnLogin.setClickable(true);
                             Toast.makeText(getApplicationContext(), "登录失败！失败：" + e.getMessage() + "," + e.getErrorCode(), Toast.LENGTH_LONG).show();
-                            Log.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
+                            Log.i("ayi", "失败：" + e.getMessage() + "," + e.getErrorCode());
                         }
                     }
                 });
@@ -153,7 +153,7 @@ public class HouseKeeperLoginActivity extends BaseActivity implements View.OnCli
                             @Override
                             public void done(BmobException e) {
                                 if(e==null){
-                                    Log.i("bmob", "更新成功");
+                                    Log.i("ayi", "更新成功");
                                 }else{
                                     //    loge(e);
                                 }

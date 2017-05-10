@@ -51,10 +51,10 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
         SharedPreferences sp = getApplicationContext().getSharedPreferences("ayi", Context.MODE_PRIVATE);
         UserID = sp.getString("ayi_id", "0");
         BmobQuery<Order> query = new BmobQuery<Order>();
-        //查询phone叫“比目”的数据
         query.addWhereEqualTo("hid", UserID);
         Log.d("Debug",UserID);
         query.addWhereEqualTo("state","3");
+        query.addWhereEqualTo("state","4");
         query.order("-updatedAt");
         query.setLimit(10);
         //执行查询方法
@@ -62,9 +62,7 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
             @Override
             public void done(List<Order> object, BmobException e) {
                 if (e == null) {
-                    // toast("查询成功：共"+object.size()+"条数据。");
                     if (object.size() < 1) {
-                        //  Toast.makeText(getActivity(), "", Toast.LENGTH_LONG).show();
                     } else {
                         orderList = object;
                         orderAdapter = new HisOrderListAdapter(getApplicationContext(), orderList);
@@ -77,13 +75,10 @@ public class MyOrderActivity extends BaseActivity implements View.OnClickListene
                                 startActivity(intent);
                             }
                         });
-                        for (Order order : object) {
-                            //    String psw1 = order.getPassword();
-                        }
                     }
                 } else {
 
-                    Log.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
+                    Log.i("ayi", "失败：" + e.getMessage() + "," + e.getErrorCode());
                 }
             }
         });

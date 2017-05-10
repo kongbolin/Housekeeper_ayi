@@ -82,9 +82,9 @@ public class UpdateAyiPswActivity extends BaseActivity implements View.OnClickLi
                                                 if (e == null) {
                                                     UpdateAyiPswActivity.this.finish();
                                                     Toast.makeText(mContext, "密码修改成功!", Toast.LENGTH_SHORT).show();
-                                                    Log.i("bmob", "密码修改成功！");
+                                                    Log.i("ayi", "密码修改成功！");
                                                 } else {
-                                                    Log.i("bmob", "密码修改失败：" + e.getMessage() + "," + e.getErrorCode());
+                                                    Log.i("ayi", "密码修改失败：" + e.getMessage() + "," + e.getErrorCode());
                                                 }
                                             }
                                         });
@@ -93,7 +93,7 @@ public class UpdateAyiPswActivity extends BaseActivity implements View.OnClickLi
                                         Toast.makeText(mContext, "原始密码不正确！", Toast.LENGTH_LONG).show();
                                     }
                                 } else {
-                                    Log.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
+                                    Log.i("ayi", "失败：" + e.getMessage() + "," + e.getErrorCode());
                                 }
                             }
 
