@@ -107,7 +107,7 @@ public class GuideActivity extends BaseActivity {
      * 进入主界面
      */
     void GoToMainActivity() {
-        Intent i = new Intent(GuideActivity.this, MainActivity.class);
+        Intent i = new Intent(GuideActivity.this, HouseKeeperServiceActivity.class);
         startActivity(i);
         finish();
     }

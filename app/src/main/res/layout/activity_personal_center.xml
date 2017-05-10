@@ -8,89 +8,80 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@color/colorMain"
-        android:paddingBottom="10dp"
-        android:paddingTop="36dp">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/Usericon"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="10dp"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/top" />
-
-        <TextView
-            android:id="@+id/usercenter_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/Usericon"
-            android:textSize="16sp"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="6dp"
-            android:text="贰悫"
-            android:textColor="@color/colorWhite" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="#6bbf6b"
-        android:paddingLeft="35dp"
-        android:paddingRight="35dp">
-
-        <View
-            android:id="@+id/line"
-            android:layout_width="1dp"
-            android:layout_height="30dp"
-            android:layout_centerInParent="true"
-            android:background="#ffffff"></View>
-
+    >
+        <RelativeLayout
+            android:layout_marginTop="25dp"
+            android:id="@+id/firstLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <ImageView
-            android:id="@+id/imgOrder"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:id="@+id/back"
+            android:src="@mipmap/back_a"
             android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@+id/tvOrder"
-            android:padding="3dp"
-            android:src="@mipmap/orders" />
-
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/tvOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginRight="30dp"
-            android:layout_toLeftOf="@+id/line"
-            android:padding="2dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
             android:text="我的订单"
             android:textColor="@color/colorWhite"
             android:textSize="16sp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_below="@+id/firstLayout"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/Usericon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/top" />
+        <RelativeLayout
+            android:layout_marginTop="6dp"
+            android:layout_below="@+id/Usericon"
+            android:layout_centerHorizontal="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:id="@+id/line10"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:layout_centerHorizontal="true"/>
+            <TextView
+                android:id="@+id/usercenter_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="贰悫"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/line10"
+                android:textColor="@color/colorWhite" />
 
 
-        <ImageView
-            android:id="@+id/imgComment"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="10dp"
-            android:layout_toRightOf="@+id/line"
-            android:padding="3dp"
-            android:src="@mipmap/comment" />
+            <RatingBar
+                android:layout_marginLeft="5dp"
+                android:id="@+id/ayi_rate"
+                android:layout_toRightOf="@+id/line10"
+                style="@style/fiveRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:isIndicator="true"
+                android:layout_marginTop="5dp"
+                android:numStars="5"
+                android:rating="4" />
+        </RelativeLayout>
+        </RelativeLayout>
 
-        <TextView
-            android:id="@+id/tvComment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/imgComment"
-            android:padding="2dp"
-            android:text="我的评价"
-            android:textColor="@color/colorWhite"
-            android:textSize="16sp" />
     </RelativeLayout>
+
+
 
     <RelativeLayout
         android:id="@+id/fg_me_wanshan_rl"

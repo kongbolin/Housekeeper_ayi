@@ -34,7 +34,7 @@ public class SplashActivity extends BaseActivity {
         rr = new Runnable() {
             @Override
             public void run() {//进入主界面
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                Intent intent = new Intent(SplashActivity.this, HouseKeeperServiceActivity.class);
                 SplashActivity.this.startActivity(intent);
                 SplashActivity.this.finish();
             }
@@ -76,7 +76,7 @@ public class SplashActivity extends BaseActivity {
                 finish();
             }
             if (count != 1) {//进入主界面
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                Intent intent = new Intent(SplashActivity.this, HouseKeeperServiceActivity.class);
                 startActivity(intent);
                 finish();
             }

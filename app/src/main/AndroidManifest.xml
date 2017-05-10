@@ -17,10 +17,6 @@
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
-    <permission
-        android:name="cn.bmob.permission.push"
-        android:protectionLevel="normal"></permission>
-
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -33,7 +29,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <uses-permission android:name="cn.bmob.permission.push" /> <!-- 添加自定义的权限 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -97,7 +93,7 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="Giwnsl1drbXdEfxLVNgZmr9ZGFhNs0lY" />
 
-        <activity android:name="com.edu.xhu.housekeeper.activity.SplashActivity">
+        <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -124,65 +120,22 @@
             android:name="com.tencent.connect.common.AssistActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <!--<activity android:name=".activity.MapDemoActivity"></activity>-->
-        <activity android:name=".activity.MainActivity"></activity>
         <activity android:name=".activity.GuideActivity"></activity>
-        <activity android:name=".activity.UserLoginActivity"></activity>
-        <activity android:name=".activity.RegisterActivity"></activity>
-        <activity android:name=".activity.UpdatePswActivity"></activity>
         <activity android:name=".activity.UserInfoActivity"></activity>
         <activity android:name=".activity.SettingActivity"></activity>
         <activity android:name=".activity.AboutUsActivity"></activity>
         <activity android:name=".activity.XieyiActivity"></activity>
         <activity android:name=".activity.FeedBacckActivity"></activity>
-        <activity android:name=".activity.CityListActivity"></activity>
-        <activity android:name=".activity.AyiDetailsActivity"></activity>
-        <activity android:name=".activity.ServerDetailsActivity"></activity>
-        <activity android:name=".activity.CreatOrderActivity"></activity>
-        <service
-            android:name="cn.bmob.push.lib.service.PushService"
-            android:exported="true"
-            android:label="PushService"
-            android:process=":bmobpush">
-            <intent-filter>
-                <action android:name="cn.bmob.push.lib.service.PushService" />
-            </intent-filter>
-        </service>
+        <activity android:name=".activity.PersonalSettingsActivity"></activity>
+        <activity android:name=".activity.HouseKeeperLoginActivity"></activity>
+        <activity android:name=".activity.AyiInfoActivity" />
+        <activity android:name=".activity.UpdateAyiPswActivity" />
+        <activity android:name=".activity.OrderDetailsActivity" />
+        <activity android:name=".activity.MyOrderActivity" />
+        <activity android:name=".activity.HisOrderDetailsActivity" />
+        <activity android:name=".activity.GoingOrderActivity" />
+        <activity android:name=".activity.HouseKeeperServiceActivity"></activity>
 
-        <!-- 用于进程保活 -->
-        <service
-            android:name="cn.bmob.push.lib.service.PushNotifyService"
-            android:process=":bmobpush"></service>
-
-        <receiver android:name="cn.bmob.push.PushReceiver">
-            <intent-filter>
-                <!-- 系统启动完成后会调用 -->
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <!-- 解锁完成后会调用 -->
-                <action android:name="android.intent.action.USER_PRESENT" />
-                <!-- 监听网络连通性 -->
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-            </intent-filter>
-        </receiver>
-
-        <!-- 第四部中创建的消息接收器，在这里进行注册 -->
-        <receiver android:name="com.edu.xhu.housekeeper.activity.MyPushMessageReceiver">
-            <intent-filter>
-                <action android:name="cn.bmob.push.action.MESSAGE" />
-            </intent-filter>
-        </receiver>
-
-        <!-- 接收心跳和唤醒的广播，要和PushService运行在同个进程 -->
-        <receiver
-            android:name="cn.bmob.push.PushNotifyReceiver"
-            android:process=":bmobpush">
-            <intent-filter>
-                <!-- 接收心跳广播的action -->
-                <action android:name="cn.bmob.push.action.HEARTBEAT" />
-                <!-- 接收唤醒广播的action -->
-                <action android:name="cn.bmob.push.action.NOTIFY" />
-            </intent-filter>
-        </receiver>
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"

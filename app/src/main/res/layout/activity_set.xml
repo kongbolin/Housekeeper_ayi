@@ -56,35 +56,35 @@
             android:layout_centerVertical="true"
             android:src="@mipmap/list_icon_more_normal" />
     </RelativeLayout>
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="0.8dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:background="@color/colorLine"></View>
-    <RelativeLayout
-        android:id="@+id/set_rl_hello"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp">
+    <!--<View-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="0.8dp"-->
+        <!--android:layout_marginLeft="12dp"-->
+        <!--android:layout_marginRight="12dp"-->
+        <!--android:background="@color/colorLine"></View>-->
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/set_rl_hello"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="45dp"-->
+        <!--android:layout_marginLeft="12dp"-->
+        <!--android:layout_marginRight="12dp">-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
-            android:text="查看欢迎页"
-            android:textColor="#000"
-            android:textSize="16sp" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginLeft="15dp"-->
+            <!--android:text="查看欢迎页"-->
+            <!--android:textColor="#000"-->
+            <!--android:textSize="16sp" />-->
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/list_icon_more_normal" />
-    </RelativeLayout>
+        <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:src="@mipmap/list_icon_more_normal" />-->
+    <!--</RelativeLayout>-->
     <View
         android:layout_width="fill_parent"
         android:layout_height="0.8dp"

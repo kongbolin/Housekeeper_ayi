@@ -1,7 +1,6 @@
 package com.edu.xhu.housekeeper.activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,20 +11,18 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.edu.xhu.housekeeper.R;
+import com.edu.xhu.housekeeper.entity.Housekeeper;
 import com.edu.xhu.housekeeper.entity.User;
-
-import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.UpdateListener;
 
 /**
  * Created by skysoft on 2017/3/16.
  */
-public class UpdatePswActivity extends BaseActivity implements View.OnClickListener {
+public class UpdateAyiPswActivity extends BaseActivity implements View.OnClickListener {
     private ImageView mIvBack;
     private EditText mEtPaw1;
     private EditText mEtPaw2;
@@ -41,7 +38,7 @@ public class UpdatePswActivity extends BaseActivity implements View.OnClickListe
         mContext = this;
         SharedPreferences sp = getSharedPreferences("ayi", Context.MODE_PRIVATE);
         //取得user_id和手机号
-        UserId = sp.getString("user_id", "");//如果取不到值就取后面的""
+        UserId = sp.getString("ayi_id", "");//如果取不到值就取后面的""
         initView();
     }
 
@@ -69,21 +66,21 @@ public class UpdatePswActivity extends BaseActivity implements View.OnClickListe
                     Toast.makeText(mContext, "密码不能为空", Toast.LENGTH_LONG).show();
                 } else {
                     if (psw2.equals(psw3)) {
-                        BmobQuery<User> query = new BmobQuery<User>();
-                        query.getObject(UserId, new QueryListener<User>() {
+                        BmobQuery<Housekeeper> query = new BmobQuery<Housekeeper>();
+                        query.getObject(UserId, new QueryListener<Housekeeper>() {
                             @Override
-                            public void done(User object, BmobException e) {
+                            public void done(Housekeeper object, BmobException e) {
                                 if (e == null) {
                                     String psw = object.getPassword();
                                     if (psw.equals(psw1)) {
                                         //开始更新密码
-                                        User user1 = new User();
+                                        Housekeeper user1 = new Housekeeper();
                                         user1.setPassword(psw2);
                                         user1.update(UserId, new UpdateListener() {
                                             @Override
                                             public void done(BmobException e) {
                                                 if (e == null) {
-                                                    UpdatePswActivity.this.finish();
+                                                    UpdateAyiPswActivity.this.finish();
                                                     Toast.makeText(mContext, "密码修改成功!", Toast.LENGTH_SHORT).show();
                                                     Log.i("bmob", "密码修改成功！");
                                                 } else {

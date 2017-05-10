@@ -16,6 +16,77 @@ public class Housekeeper extends BmobObject {
     private BmobFile img;//头像文件
     private BmobFile IDimg;//头像文件
     private String age;
+    private String location;//籍贯
+    private String favor;//意向，类型
+    private String joinTime;//加入时间
+    private  String stars;//评分
+    private  String comment;//自我评价
+    private  String learn;//学历
+    private  String mingzu;//名族
+    private String sex;
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getFavor() {
+        return favor;
+    }
+
+    public void setFavor(String favor) {
+        this.favor = favor;
+    }
+
+    public String getJoinTime() {
+        return joinTime;
+    }
+
+    public void setJoinTime(String joinTime) {
+        this.joinTime = joinTime;
+    }
+
+    public String getStars() {
+        return stars;
+    }
+
+    public void setStars(String stars) {
+        this.stars = stars;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public String getLearn() {
+        return learn;
+    }
+
+    public void setLearn(String learn) {
+        this.learn = learn;
+    }
+
+    public String getMingzu() {
+        return mingzu;
+    }
+
+    public void setMingzu(String mingzu) {
+        this.mingzu = mingzu;
+    }
 
     public String getAge() {
         return age;
