@@ -61,26 +61,26 @@ public class Utils {
         return m.matches();
     }
 
-//    public void loadImgByVolley(String imgUrl, final ImageView imageView) {
-//        ImageRequest imgRequest = new ImageRequest(imgUrl,
-//                new Response.Listener<Bitmap>() {
-//                    /**
-//                     * 加载成功
-//                     * @param arg0
-//                     */
-//                    @Override
-//                    public void onResponse(Bitmap arg0) {
-//                        imageView.setImageBitmap(arg0);
-//                    }
-//                }, 300, 200, Bitmap.Config.ARGB_8888,
-//                new Response.ErrorListener() {
-//                    //加载失败
-//                    @Override
-//                    public void onErrorResponse(VolleyError arg0) {
-//                        imageView.setImageResource(R.mipmap.img_share_sina);
-//                    }
-//                });
-//        //将图片加载放入请求队列中去
-//       HousekeeperApp. mQueue.add(imgRequest);
-//    }
+    public void loadImgByVolley(String imgUrl, final ImageView imageView) {
+        ImageRequest imgRequest = new ImageRequest(imgUrl,
+                new Response.Listener<Bitmap>() {
+                    /**
+                     * 加载成功
+                     * @param arg0
+                     */
+                    @Override
+                    public void onResponse(Bitmap arg0) {
+                        imageView.setImageBitmap(arg0);
+                    }
+                }, 300, 200, Bitmap.Config.ARGB_8888,
+                new Response.ErrorListener() {
+                    //加载失败
+                    @Override
+                    public void onErrorResponse(VolleyError arg0) {
+                        imageView.setImageResource(R.mipmap.user_center_head_icon);
+                    }
+                });
+        //将图片加载放入请求队列中去
+     //  HousekeeperApp. mQueue.add(imgRequest);
+    }
 }

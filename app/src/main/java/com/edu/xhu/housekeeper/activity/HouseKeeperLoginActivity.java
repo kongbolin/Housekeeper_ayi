@@ -79,14 +79,9 @@ public class HouseKeeperLoginActivity extends BaseActivity implements View.OnCli
                     mBtnLogin.setClickable(true);
                     return;
                 }
-
                 BmobQuery<Housekeeper> query = new BmobQuery<Housekeeper>();
-                //查询phone叫“比目”的数据
                 query.addWhereEqualTo("phone", phone);
-                query.addWhereEqualTo("password", password);
-                //返回50条数据，如果不加上这条语句，默认返回10条数据
                 query.setLimit(1);
-                //执行查询方法
                 query.findObjects(new FindListener<Housekeeper>() {
                     @Override
                     public void done(List<Housekeeper> object, BmobException e) {
@@ -110,7 +105,7 @@ public class HouseKeeperLoginActivity extends BaseActivity implements View.OnCli
                                         editor.putBoolean("isLogin",true);
                                         editor.commit();
                                         ayiId = housekeeper.getObjectId();
-                                        Toast.makeText(getApplicationContext(), "登录成功！name=" + housekeeper.getName(), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "登录成功！", Toast.LENGTH_LONG).show();
                                         startActivity(new Intent(HouseKeeperLoginActivity.this, HouseKeeperServiceActivity.class));
                                         updateBmobInstallation();
                                         HouseKeeperLoginActivity.this.finish();
