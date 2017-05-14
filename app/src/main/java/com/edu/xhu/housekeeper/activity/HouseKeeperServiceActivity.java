@@ -15,8 +15,13 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
 import com.edu.xhu.housekeeper.R;
 import com.edu.xhu.housekeeper.adapter.OrderListAdapter;
+import com.edu.xhu.housekeeper.entity.Housekeeper;
 import com.edu.xhu.housekeeper.entity.MyBmobInstallation;
 import com.edu.xhu.housekeeper.entity.Order;
 import com.edu.xhu.housekeeper.entity.Person;
@@ -29,18 +34,21 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.LogRecord;
+
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobInstallation;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobDate;
+import cn.bmob.v3.datatype.BmobGeoPoint;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 
 /**
  * Created by skysoft on 2017/4/11.
  */
-public class HouseKeeperServiceActivity extends BaseActivity implements View.OnClickListener{
+public class HouseKeeperServiceActivity extends BaseActivity implements View.OnClickListener {
     private ImageView personalSettings;
     private SharedPreferences sharedPreferences;
     private boolean isLogin;
@@ -49,18 +57,20 @@ public class HouseKeeperServiceActivity extends BaseActivity implements View.OnC
     private OrderListAdapter orderAdapter;
     private Handler mHandler;
     private int start = 0;
-    private List<Order> tempOrder ;
+    private List<Order> tempOrder;
     private List<Order> refreshOrder;
     private boolean firstCome = true;
     private int position = 0;
     private RelativeLayout nowRelative;
     private String ayiId;
+    private LocationClient mLocationClient;
+    public BDLocationListener myListener;
     private Handler handler = new Handler() {
-        public void handleMessage(Message m){
-            switch (m.what){
+        public void handleMessage(Message m) {
+            switch (m.what) {
                 case 0:
                     Intent intent = new Intent();
-                    intent.setClass(getApplicationContext(),HouseKeeperLoginActivity.class);
+                    intent.setClass(getApplicationContext(), HouseKeeperLoginActivity.class);
                     startActivity(intent);
                     finish();
                     break;
@@ -68,11 +78,11 @@ public class HouseKeeperServiceActivity extends BaseActivity implements View.OnC
                     initListView();
                     break;
                 case 2:
-                    orderAdapter = new OrderListAdapter(getApplicationContext(), geneItems(orderList),HouseKeeperServiceActivity.this);
+                    orderAdapter = new OrderListAdapter(getApplicationContext(), geneItems(orderList), HouseKeeperServiceActivity.this);
                     orderListView.setAdapter(orderAdapter);
                     break;
                 case 4:
-                    orderAdapter = new OrderListAdapter(getApplicationContext(), tempOrder,HouseKeeperServiceActivity.this);
+                    orderAdapter = new OrderListAdapter(getApplicationContext(), tempOrder, HouseKeeperServiceActivity.this);
                     orderListView.setAdapter(orderAdapter);
                     break;
             }
@@ -84,24 +94,25 @@ public class HouseKeeperServiceActivity extends BaseActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_ayi);
         SharedPreferences mSharedPreferences = getSharedPreferences("ayi", Context.MODE_PRIVATE);
-        ayiId = mSharedPreferences.getString("ayi_id","");
+        ayiId = mSharedPreferences.getString("ayi_id", "");
         mHandler = new Handler();
         tempOrder = new ArrayList<Order>();
         initView();
         initData();
+        UpdateLocation();
     }
 
 
-    public void initView(){
-        nowRelative = (RelativeLayout)findViewById(R.id.rl_order_now) ;
-        personalSettings = (ImageView)findViewById(R.id.iv_personal);
+    public void initView() {
+        nowRelative = (RelativeLayout) findViewById(R.id.rl_order_now);
+        personalSettings = (ImageView) findViewById(R.id.iv_personal);
         orderListView = (XListView) findViewById(R.id.order_list);
         orderListView.setPullLoadEnable(true);
         nowRelative.setOnClickListener(this);
         personalSettings.setOnClickListener(this);
     }
 
-    public void initData(){
+    public void initData() {
         BmobQuery<Order> query = new BmobQuery<Order>();
         query.addWhereEqualTo("state", "0");
         query.setSkip(start);
@@ -116,9 +127,9 @@ public class HouseKeeperServiceActivity extends BaseActivity implements View.OnC
                         Toast.makeText(getApplicationContext(), "没有订单", Toast.LENGTH_LONG).show();
                     } else {
                         orderList = object;
-                        if(firstCome) {
+                        if (firstCome) {
                             handler.sendEmptyMessage(1);
-                        }else {
+                        } else {
                             handler.sendEmptyMessage(2);
                         }
                     }
@@ -130,7 +141,7 @@ public class HouseKeeperServiceActivity extends BaseActivity implements View.OnC
     }
 
 
-    public void appendOrder(){
+    public void appendOrder() {
         BmobQuery<Order> query = new BmobQuery<Order>();
         List<BmobQuery<Order>> and = new ArrayList<BmobQuery<Order>>();
 //大于00：00：00
@@ -138,13 +149,13 @@ public class HouseKeeperServiceActivity extends BaseActivity implements View.OnC
         final String startTime = tempOrder.get(0).getCreatedAt();
 //        Log.d("Debug",startTime);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date  = null;
+        Date date = null;
         try {
             date = sdf.parse(startTime);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        q1.addWhereGreaterThan("createdAt",new BmobDate(date));
+        q1.addWhereGreaterThan("createdAt", new BmobDate(date));
         q1.addWhereEqualTo("state", "0");
         and.add(q1);
 
@@ -153,20 +164,21 @@ public class HouseKeeperServiceActivity extends BaseActivity implements View.OnC
             @Override
             public void done(List<Order> list, BmobException e) {
 //                    Log.d("Debug","list.size:"+list.size());
-                    if(list.size()!=0) {
-                        list.remove(0);
-                        for (int i = 0; i < list.size(); i++) {
-                            tempOrder.add(0, list.get(i));
-                        }
-                        start += list.size();
-                        start = tempOrder.size();
+                if (list.size() != 0) {
+                    list.remove(0);
+                    for (int i = 0; i < list.size(); i++) {
+                        tempOrder.add(0, list.get(i));
                     }
-                    handler.sendEmptyMessage(4);
+                    start += list.size();
+                    start = tempOrder.size();
+                }
+                handler.sendEmptyMessage(4);
             }
         });
     }
-    public void initListView(){
-        orderAdapter = new OrderListAdapter(getApplicationContext(), geneItems(orderList),HouseKeeperServiceActivity.this);
+
+    public void initListView() {
+        orderAdapter = new OrderListAdapter(getApplicationContext(), geneItems(orderList), HouseKeeperServiceActivity.this);
         orderListView.setAdapter(orderAdapter);
         orderListView.setXListViewListener(new XListView.IXListViewListener() {
             @Override
@@ -192,21 +204,22 @@ public class HouseKeeperServiceActivity extends BaseActivity implements View.OnC
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 position = position;
-                Intent intent=new Intent(getApplicationContext(),OrderDetailsActivity.class);
-                intent.putExtra("orderId",tempOrder.get(position-1).getObjectId());
-                startActivityForResult(intent,0);
+                Intent intent = new Intent(getApplicationContext(), OrderDetailsActivity.class);
+                intent.putExtra("orderId", tempOrder.get(position - 1).getObjectId());
+                startActivityForResult(intent, 0);
             }
         });
     }
+
     private List<Order> geneItems(List<Order> orderList) {
 //        Log.d("Debug","orderList.size:"+orderList.size()+","+"tempOrder.size:"+tempOrder.size());
-        for (int i = 0; i<orderList.size(); ++i) {
+        for (int i = 0; i < orderList.size(); ++i) {
             tempOrder.add(orderList.get(i));
 //            Log.d("Debug",orderList.get(i).getCreatedAt()+"");
         }
         start = tempOrder.size();
 //        Log.d("Debug","tempOrder.size:"+tempOrder.size());
-        return  tempOrder;
+        return tempOrder;
     }
 
 
@@ -214,21 +227,21 @@ public class HouseKeeperServiceActivity extends BaseActivity implements View.OnC
     protected void onResume() {
         super.onResume();
         sharedPreferences = getSharedPreferences("ayi", Context.MODE_PRIVATE);
-        isLogin = sharedPreferences.getBoolean("isLogin",false);
-        if(isLogin == true){
+        isLogin = sharedPreferences.getBoolean("isLogin", false);
+        if (isLogin == true) {
 
-        }else {
-            handler.sendEmptyMessageDelayed(0,500);
+        } else {
+            handler.sendEmptyMessageDelayed(0,100);
         }
     }
 
     @Override
 
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.iv_personal:
                 Intent intent = new Intent();
-                intent.setClass(getApplicationContext(),PersonalSettingsActivity.class);
+                intent.setClass(getApplicationContext(), PersonalSettingsActivity.class);
                 startActivity(intent);
                 break;
             case R.id.rl_order_now:
@@ -240,9 +253,9 @@ public class HouseKeeperServiceActivity extends BaseActivity implements View.OnC
 
     public void goingOrders() {
         BmobQuery<Order> query = new BmobQuery<Order>();
-        query.addWhereEqualTo("hid",ayiId );
+        query.addWhereEqualTo("hid", ayiId);
         query.addWhereLessThan("state", "3");
-        query.addWhereNotEqualTo("state","-1");
+        query.addWhereNotEqualTo("state", "-1");
         query.order("-updatedAt");
         query.findObjects(new FindListener<Order>() {
             @Override
@@ -269,28 +282,92 @@ public class HouseKeeperServiceActivity extends BaseActivity implements View.OnC
     }
 
 
-    public void refreshList(int  b){
-        Log.d("Debug","tempOrder.size():"+tempOrder.size()+",b:"+b);
+    public void refreshList(int b) {
+        Log.d("Debug", "tempOrder.size():" + tempOrder.size() + ",b:" + b);
 //        tempOrder.remove(b);
 //        start = tempOrder.size();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d("Debug","onActivityResult");
+        Log.d("Debug", "onActivityResult");
         switch (requestCode) {
             case 0:
-                boolean  grabSuccess = data.getBooleanExtra("grabSuccess",false);
+                boolean grabSuccess = data.getBooleanExtra("grabSuccess", false);
                 // 根据上面发送过去的请求吗来区别
-                Log.d("Debug","position:"+position+",grabSuccess"+grabSuccess);
-              if(grabSuccess){
-                  tempOrder.remove(position);
-                  orderAdapter.setOrderList(tempOrder);
-                  orderAdapter.notifyDataSetChanged();
-              }
+                Log.d("Debug", "position:" + position + ",grabSuccess" + grabSuccess);
+                if (grabSuccess) {
+                    tempOrder.remove(position);
+                    orderAdapter.setOrderList(tempOrder);
+                    orderAdapter.notifyDataSetChanged();
+                }
                 break;
             default:
                 break;
+        }
+    }
+
+    public void UpdateLocation() {
+        mLocationClient = new LocationClient(this.getApplicationContext());
+        myListener = new MyLocationListener();
+        mLocationClient.registerLocationListener(myListener);
+
+        LocationClientOption locationOption = new LocationClientOption();
+        locationOption.setOpenGps(true);
+        locationOption.setCoorType("bd09ll");
+        locationOption.setPriority(LocationClientOption.NetWorkFirst);
+
+        locationOption.setAddrType("all");
+        locationOption.setProdName("BaiduLocation");
+        locationOption.setScanSpan(1000 *6);//设置发起定位请求的间隔时间为600s,10分钟
+        locationOption.disableCache(true);//禁止启用缓存定位
+        mLocationClient.setLocOption(locationOption);
+        Log.i("ayi", "BaiduMapMyLocationActivity 开启定位");
+        mLocationClient.start();
+
+    }
+
+    public class MyLocationListener implements BDLocationListener {
+        @Override
+        public void onReceiveLocation(BDLocation location) {
+            if (location == null)
+                return;
+            StringBuffer sb = new StringBuffer(256);
+            sb.append("time : ");
+            sb.append(location.getTime());
+            sb.append("\nerror code : ");
+            sb.append(location.getLocType());
+            sb.append("\nlatitude : ");
+            sb.append(location.getLatitude());
+            sb.append("\nlontitude : ");
+            sb.append(location.getLongitude());
+            sb.append("\nradius : ");
+            sb.append(location.getRadius());
+            if (location.getLocType() == BDLocation.TypeGpsLocation) {
+                sb.append("\nspeed : ");
+                sb.append(location.getSpeed());
+                sb.append("\nsatellite : ");
+                sb.append(location.getSatelliteNumber());
+            } else if (location.getLocType() == BDLocation.TypeNetWorkLocation) {
+                sb.append("\naddr : ");
+                sb.append(location.getAddrStr());
+            }
+            Log.e("ayi", "GPR:" + sb.toString());
+            BmobGeoPoint point = new BmobGeoPoint(location.getLatitude(), location.getLongitude());
+         //   Log.e("ayi", "GPR111:" + point.toString());
+            Housekeeper housekeeper=new Housekeeper();
+            housekeeper.setGpsAdd(point);
+            housekeeper.setObjectId(ayiId);
+            housekeeper.update(ayiId, new UpdateListener() {
+                @Override
+                public void done(BmobException e) {
+                    Log.i("ayi","update gps-->:"+e.toString());
+                }
+            });
+        }
+        @Override
+        public void onConnectHotSpotMessage(String s, int i) {
+
         }
     }
 }

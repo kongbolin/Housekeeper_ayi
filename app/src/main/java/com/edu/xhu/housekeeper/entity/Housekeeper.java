@@ -10,7 +10,7 @@ import cn.bmob.v3.datatype.BmobGeoPoint;
 public class Housekeeper extends BmobObject {
     private String name;
     private String phone;
-    private BmobGeoPoint gpsAdd;//位置信息
+    private BmobGeoPoint gpsAddr;//位置信息
     private String password;
     private String IdCard;
     private BmobFile img;//头像文件
@@ -97,11 +97,11 @@ public class Housekeeper extends BmobObject {
     }
 
     public BmobGeoPoint getGpsAdd() {
-        return gpsAdd;
+        return gpsAddr;
     }
 
     public void setGpsAdd(BmobGeoPoint gpsAdd) {
-        this.gpsAdd = gpsAdd;
+        this.gpsAddr = gpsAdd;
     }
 
     public String getIdCard() {

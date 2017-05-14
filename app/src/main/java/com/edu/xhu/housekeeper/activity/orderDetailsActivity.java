@@ -89,9 +89,6 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
         back.setOnClickListener(this);
     }
 
-    public void initData(){
-
-    }
     @Override
     protected void onResume() {
         super.onResume();
@@ -131,7 +128,7 @@ public class OrderDetailsActivity extends BaseActivity implements View.OnClickLi
             @Override
             public void done(User object, BmobException e) {
                 if (e == null) {
-                  String potoUrl = object.getImg().getUrl();
+                    String potoUrl = object.getImg().getUrl();
                     String userName = object.getName();
                     nameText.setText(userName);
                     loadImgByVolley(potoUrl,photoImage);

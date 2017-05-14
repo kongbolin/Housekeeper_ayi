@@ -27,5 +27,7 @@ public class HousekeeperApp extends Application {
         Bmob.initialize(this, Appid);
         // 启动推送服务
 //        mQueue = Volley.newRequestQueue(this);
+//        SDKInitializer.initialize(getApplicationContext());
+//        BP.init(Appid);
     }
 }
