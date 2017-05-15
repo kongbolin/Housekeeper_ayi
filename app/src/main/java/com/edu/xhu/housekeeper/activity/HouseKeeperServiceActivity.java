@@ -357,7 +357,6 @@ public class HouseKeeperServiceActivity extends BaseActivity implements View.OnC
          //   Log.e("ayi", "GPR111:" + point.toString());
             Housekeeper housekeeper=new Housekeeper();
             housekeeper.setGpsAdd(point);
-            housekeeper.setObjectId(ayiId);
             housekeeper.update(ayiId, new UpdateListener() {
                 @Override
                 public void done(BmobException e) {
