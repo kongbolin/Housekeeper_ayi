@@ -231,7 +231,7 @@ public class HouseKeeperServiceActivity extends BaseActivity implements View.OnC
         if (isLogin == true) {
 
         } else {
-            handler.sendEmptyMessageDelayed(0,100);
+            handler.sendEmptyMessageDelayed(0, 100);
         }
     }
 
@@ -319,7 +319,7 @@ public class HouseKeeperServiceActivity extends BaseActivity implements View.OnC
 
         locationOption.setAddrType("all");
         locationOption.setProdName("BaiduLocation");
-        locationOption.setScanSpan(1000 *6);//设置发起定位请求的间隔时间为600s,10分钟
+        locationOption.setScanSpan(1000 * 60 * 5);//设置发起定位请求的间隔时间为600s,10分钟
         locationOption.disableCache(true);//禁止启用缓存定位
         mLocationClient.setLocOption(locationOption);
         Log.i("ayi", "BaiduMapMyLocationActivity 开启定位");
@@ -354,16 +354,17 @@ public class HouseKeeperServiceActivity extends BaseActivity implements View.OnC
             }
             Log.e("ayi", "GPR:" + sb.toString());
             BmobGeoPoint point = new BmobGeoPoint(location.getLatitude(), location.getLongitude());
-         //   Log.e("ayi", "GPR111:" + point.toString());
-            Housekeeper housekeeper=new Housekeeper();
+            //   Log.e("ayi", "GPR111:" + point.toString());
+            Housekeeper housekeeper = new Housekeeper();
             housekeeper.setGpsAdd(point);
             housekeeper.update(ayiId, new UpdateListener() {
                 @Override
                 public void done(BmobException e) {
-                    Log.i("ayi","update gps-->:"+e.toString());
+                    Log.i("ayi", "update gps-->:" + e.toString());
                 }
             });
         }
+
         @Override
         public void onConnectHotSpotMessage(String s, int i) {
 
